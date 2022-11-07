@@ -36,6 +36,4 @@ We can assure you that you won't be needing to contact support if you follow all
 
 
 Licence:
-
-License
 WordPress is free software, and is released under the terms of the GNU General Public License version 2 or (at your option) any later version. This plugin is licenced under GPLv2 licence. Please send a not to "rajinsharwar@gmail.com" if you have any questions.
