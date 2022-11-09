@@ -40,7 +40,5 @@ Feel free to let us know if you have any questions regarding the 3rd party servi
 Support:
 We can assure you that you won't be needing to contact support if you follow all the instructions described in the Documentation. Yet, we are always up for your help, even on the weekends.
 
-
-
 Licence:
 WordPress is free software, and is released under the terms of the GNU General Public License version 2 or (at your option) any later version. This plugin is licenced under GPLv2 licence. Please send a note to "rajinsharwar@gmail.com" if you have any questions.
