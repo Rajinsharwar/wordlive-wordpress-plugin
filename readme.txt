@@ -27,8 +27,15 @@ Audio and Video clarity is enriched with Opus and VP8
 Ability to initiate recording of calls
 Hassle-free joining system for the seller.
 24/7 premium support from experienced agents; We love queries from you!!!
+
 Design:
 You can change the color, size, and shape of the button that suits your needs. You can choose to show either the account page or a blank page for a customer who is not logged in. Tons of other customizable options are seated up for you, please check out our demo to get acquainted with all options. We bet; you will LOVE those.
+
+3rd Party Services:
+We use Jitsi in our plugin to enable video calling feature. Jitsi is a free open-source video conferencing software for web & mobile. We use Jitsi API to integrate the video calling features in the plugin. Note that, our plugin currently uses the free version of Jitsi, which shows the Jitsi branding on your video calls. Some advertisements might also be shown on your calls. Please bear in mind that we are not responsible for those advertisements, those are served by Jitsi, and they are solely responsible for it's legal matters. If Jitsi branding, and Jitsi advertisements are really not good for your business, please drop us a mail at rajinsharwar@gmail.com, and we will deliver you a plugin which has Jitsi's premium version, and no branding, no advertisements.
+You can check the privacy policy of Jitsi from here to learn what data of your users are being collected by Jitsi, and how they use those: https://jitsi.org/security/
+You can learn more about the Terms of S4ervice from Jitsi: https://jitsi.org/meet-jit-si-terms-of-service/
+Feel free to let us know if you have any questions regarding the 3rd party services we use.
 
 Support:
 We can assure you that you won't be needing to contact support if you follow all the instructions described in the Documentation. Yet, we are always up for your help, even on the weekends.
@@ -36,4 +43,4 @@ We can assure you that you won't be needing to contact support if you follow all
 
 
 Licence:
-WordPress is free software, and is released under the terms of the GNU General Public License version 2 or (at your option) any later version. This plugin is licenced under GPLv2 licence. Please send a not to "rajinsharwar@gmail.com" if you have any questions.
+WordPress is free software, and is released under the terms of the GNU General Public License version 2 or (at your option) any later version. This plugin is licenced under GPLv2 licence. Please send a note to "rajinsharwar@gmail.com" if you have any questions.
