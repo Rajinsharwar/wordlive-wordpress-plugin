@@ -5,87 +5,13 @@ function wordlive_settings_page(){
     ?>
         <div class="wrap">
           
-            <h1>WooLive</h1>
+            <h1>WordLive | Livecall Addon for Woocommerce</h1>
             
             <?php 
-          
             
-            if( isset($_POST) && !empty($_POST) ){
-                $safe = $_POST;
-                $sanitize = [];
-                foreach($safe as $safe_key=>$safe_value){
-                    if($_POST['seller_email_temp']){
-                        $sanitize[$safe_key] = $safe_value;
-                    }else{
-                        $sanitize[$safe_key] = _sanitize($safe_value);
-                    }   
-                   
-                }
-                update_option('save_settings', '1');
-
-                //main settings
-                if( isset($sanitize['enable_shop_page_btn']) && $sanitize['enable_shop_page_btn'] == '1' ){
-                    update_option('enable_shop_page_btn', '1');
-                } else {
-                    update_option('enable_shop_page_btn', '0');
-                }
-
-                update_option('button_loc_shop_page', $sanitize['button_loc_shop_page']);
-
-                if( isset($sanitize['enable_product_details_page_btn']) && $sanitize['enable_product_details_page_btn'] == '1' ){
-                    update_option('enable_product_details_page_btn', '1');
-                } else {
-                    update_option('enable_product_details_page_btn', '0');
-                }
-
-                update_option('button_loc_product_details_page', $sanitize['button_loc_product_details_page']);
-
-                update_option( 'loginpage_slug', $sanitize['loginpage_slug'] );
-                update_option( 'howtojoinpage_slug', $sanitize['howtojoinpage_slug'] );
-
-                update_option( 'guestlogin_enable', $sanitize['guestlogin_enable'] );
-                update_option( 'livecall_slug', $sanitize['livecall_slug'] );
-                update_option( 'livecall_btn_text', $sanitize['livecall_btn_text'] );
-
-                //Button Style
-                update_option( 'livecall_btn_width', $sanitize['livecall_btn_width'] );
-                update_option( 'livecall_btn_height', $sanitize['livecall_btn_height'] );
-
-                update_option( 'livecall_btn_margin_type', $sanitize['livecall_btn_margin_type'] );
-                update_option( 'livecall_btn_margin_top', $sanitize['livecall_btn_margin_top'] );
-                update_option( 'livecall_btn_margin_right', $sanitize['livecall_btn_margin_right'] );
-                update_option( 'livecall_btn_margin_bottom', $sanitize['livecall_btn_margin_bottom'] );
-                update_option( 'livecall_btn_margin_left', $sanitize['livecall_btn_margin_left'] );
-
-                update_option( 'livecall_btn_padding_type', $sanitize['livecall_btn_padding_type'] );
-                update_option( 'livecall_btn_padding_top', $sanitize['livecall_btn_padding_top'] );
-                update_option( 'livecall_btn_padding_right', $sanitize['livecall_btn_padding_right'] );
-                update_option( 'livecall_btn_padding_bottom', $sanitize['livecall_btn_padding_bottom'] );
-                update_option( 'livecall_btn_padding_left', $sanitize['livecall_btn_padding_left'] );
-
-                update_option( 'livecall_btn_textalign', $sanitize['livecall_btn_textalign'] );
-                update_option( 'livecall_btn_font_size', $sanitize['livecall_btn_font_size'] );
-                update_option( 'livecall_btn_fontfamily', $sanitize['livecall_btn_fontfamily'] );
-                update_option( 'livecall_btn_text_color', $sanitize['livecall_btn_text_color'] );
-                update_option( 'livecall_btn_border_width', $sanitize['livecall_btn_border_width'] );
-                update_option( 'livecall_btn_border_color', $sanitize['livecall_btn_border_color'] );
-                update_option( 'livecall_btn_border_radius', $sanitize['livecall_btn_border_radius'] );
-                update_option( 'livecall_btn_bg_color', $sanitize['livecall_btn_bg_color'] );
-
-                //Button Style (On hover state)
-                update_option( 'livecall_btn_font_size_hover', $sanitize['livecall_btn_font_size_hover'] );
-                update_option( 'livecall_btn_text_color_hover', $sanitize['livecall_btn_text_color_hover'] );
-                update_option( 'livecall_btn_border_width_hover', $sanitize['livecall_btn_border_width_hover'] );
-                update_option( 'livecall_btn_border_color_hover', $sanitize['livecall_btn_border_color_hover'] );
-                update_option( 'livecall_btn_border_radius_hover', $sanitize['livecall_btn_border_radius_hover'] );
-                update_option( 'livecall_btn_bg_color_hover', $sanitize['livecall_btn_bg_color_hover'] );
-
-                //eamil template
-                update_option( 'seller_email_subject', $sanitize['seller_email_subject'] );
-                update_option( 'seller_email_temp', $sanitize['seller_email_temp'] );
-
-                //echo '<script>window.location="admin.php?page=WordLive&success=1"</script>';
-
+            //echo "<pre>";print_r($_POST);die;
+            if(isset($_POST['_wp_http_referer']) && check_admin_referer( WORDLIVE_PLUGIN_PREFIX."formsettings")){
+               include_once(WORDLIVE_PLUGINPATH . '/admin/settings_post.php');
             }
 
             if( isset($_GET['success']) && $_GET['success'] == '1' ){
@@ -93,211 +19,15 @@ function wordlive_settings_page(){
             }
             
 
-            //normal state..
-            $livecall_btn_margin_type = get_option("livecall_btn_margin_type");
-            if( empty(trim($livecall_btn_margin_type)) ){
-                $livecall_btn_margin_type = "px";
-            }
-
-            $livecall_btn_margin_top = get_option("livecall_btn_margin_top");
-            if( empty(trim($livecall_btn_margin_top)) ){
-                $livecall_btn_margin_top = "auto";
-            }
-            $livecall_btn_margin_right = get_option("livecall_btn_margin_right");
-            if( empty(trim($livecall_btn_margin_right)) ){
-                $livecall_btn_margin_right = "auto";
-            }
-            $livecall_btn_margin_bottom = get_option("livecall_btn_margin_bottom");
-            if( empty(trim($livecall_btn_margin_bottom)) ){
-                $livecall_btn_margin_bottom = "auto";
-            }
-            $livecall_btn_margin_left = get_option("livecall_btn_margin_left");
-            if( empty(trim($livecall_btn_margin_left)) ){
-                $livecall_btn_margin_left = "auto";
-            }
-
             
-            $livecall_btn_padding_type = get_option("livecall_btn_padding_type");
-            if( empty(trim($livecall_btn_padding_type)) ){
-                $livecall_btn_padding_type = "px";
-            }
-
-            $livecall_btn_padding_top = get_option("livecall_btn_padding_top");
-            if( empty(trim($livecall_btn_padding_top)) ){
-                $livecall_btn_padding_top = "0";
-            }
-            $livecall_btn_padding_right = get_option("livecall_btn_padding_right");
-            if( empty(trim($livecall_btn_padding_right)) ){
-                $livecall_btn_padding_right = "0";
-            }
-            $livecall_btn_padding_bottom = get_option("livecall_btn_padding_bottom");
-            if( empty(trim($livecall_btn_padding_bottom)) ){
-                $livecall_btn_padding_bottom = "0";
-            }
-            $livecall_btn_padding_left = get_option("livecall_btn_padding_left");
-            if( empty(trim($livecall_btn_padding_left)) ){
-                $livecall_btn_padding_left = "0";
-            }
-
-            $livecall_btn_textalign = get_option('livecall_btn_textalign');
-            if( empty(trim($livecall_btn_textalign)) ){
-                $livecall_btn_textalign = "center";
-            }
-
-            $livecall_btn_font_size = get_option('livecall_btn_font_size');
-            $livecall_btn_text_color = get_option('livecall_btn_text_color');
-            if( empty(trim($livecall_btn_text_color)) ){
-                $livecall_btn_text_color = "#FFFFFF";
-            }
-            $livecall_btn_border_width = get_option('livecall_btn_border_width');
-            $livecall_btn_border_color = get_option('livecall_btn_border_color');
-            if( empty(trim($livecall_btn_border_color)) ){
-                $livecall_btn_border_color = "#FFFFFF";
-            }
-            $livecall_btn_border_radius = get_option('livecall_btn_border_radius');
-            $livecall_btn_bg_color = get_option('livecall_btn_bg_color');
-            if( empty(trim($livecall_btn_bg_color)) ){
-                $livecall_btn_bg_color = "#27A0B7";
-            }
-
-            //hover state..
-            $livecall_btn_font_size_hover = get_option('livecall_btn_font_size_hover');
-            $livecall_btn_text_color_hover = get_option('livecall_btn_text_color_hover');
-            if( empty(trim($livecall_btn_text_color_hover)) ){
-                $livecall_btn_text_color_hover = "#FFFFFF";
-            }
-            $livecall_btn_border_width_hover = get_option('livecall_btn_border_width_hover');
-            $livecall_btn_border_color_hover = get_option('livecall_btn_border_color_hover');
-            if( empty(trim($livecall_btn_border_color_hover)) ){
-                $livecall_btn_border_color_hover = "#FFFFFF";
-            }
-            $livecall_btn_border_radius_hover = get_option('livecall_btn_border_radius_hover');
-            $livecall_btn_bg_color_hover = get_option('livecall_btn_bg_color_hover');
-            if( empty(trim($livecall_btn_bg_color_hover)) ){
-                $livecall_btn_bg_color_hover = "#000000";
-            }
-
-            $livecall_btn_width = get_option("livecall_btn_width");
-            if( empty(trim($livecall_btn_width)) ){
-                $livecall_btn_width = "auto";
-            }
-            $livecall_btn_height = get_option("livecall_btn_height");
-            if( empty(trim($livecall_btn_height)) ){
-                $livecall_btn_height = "auto";
-            }
-
-            $livecall_btn_fontfamily = get_option('livecall_btn_fontfamily');
-            if( empty(trim($livecall_btn_fontfamily)) ){
-                $livecall_btn_fontfamily = "inherit";
-            }
-
-            $seller_email_subject = get_option('seller_email_subject');
-            if( empty(trim($seller_email_subject)) ){
-                $seller_email_subject = "Sample watching request";
-            }
             ?>
-
-            <style>
-            a.btnnn {
-                font-family: <?php echo $livecall_btn_fontfamily; ?>;
-                width: <?php echo $livecall_btn_width; ?>;
-                height: <?php echo $livecall_btn_height; ?>;
-
-                /* top | right | bottom | left */
-                margin: <?php echo $livecall_btn_margin_top.(($livecall_btn_margin_top>0)?$livecall_btn_margin_type:"").' 
-                '.$livecall_btn_margin_right.(($livecall_btn_margin_right>0)?$livecall_btn_margin_type:"").' 
-                '.$livecall_btn_margin_bottom.(($livecall_btn_margin_bottom>0)?$livecall_btn_margin_type:"").' 
-                '.$livecall_btn_margin_left.(($livecall_btn_margin_left>0)?$livecall_btn_margin_type:""); 
-                ?>;
-
-                /* top | right | bottom | left */
-                padding: <?php echo $livecall_btn_padding_top.(($livecall_btn_padding_top>0)?$livecall_btn_padding_type:"").' 
-                '.$livecall_btn_padding_right.(($livecall_btn_padding_right>0)?$livecall_btn_padding_type:"").' 
-                '.$livecall_btn_padding_bottom.(($livecall_btn_padding_bottom>0)?$livecall_btn_padding_type:"").' 
-                '.$livecall_btn_padding_left.(($livecall_btn_padding_left>0)?$livecall_btn_padding_type:""); 
-                ?>;
-
-                text-decoration: none;
-                display: inline-block;
-                transition: all .2s;
-                color: <?php echo esc_attr($livecall_btn_text_color); ?>;
-                background-color: <?php echo esc_html($livecall_btn_bg_color); ?>;
-                border: <?php echo esc_html($livecall_btn_border_width); ?> solid <?php echo esc_html($livecall_btn_border_color); ?>;
-                border-radius: <?php echo esc_html($livecall_btn_border_radius); ?>;
-                font-size: <?php echo esc_html($livecall_btn_font_size); ?>;
-                text-align: <?php echo esc_html($livecall_btn_textalign); ?>;
-            }
-            <?php /*a.btnnn:hover {
-                color: <?php echo $livecall_btn_text_color_hover; ?>;
-                background-color: <?php echo $livecall_btn_bg_color_hover; ?>;
-                border: <?php echo $livecall_btn_border_width_hover; ?> solid <?php echo $livecall_btn_border_color_hover; ?>;
-                border-radius: <?php echo $livecall_btn_border_radius_hover; ?>;
-                font-size: <?php echo $livecall_btn_font_size_hover; ?>;
-            }*/ ?>
-            .fourboxes {
-                display:flex;
-                flex-wrap:wrap;
-                justify-content:space-between;
-                align-items:center;
-                width: 300px;
-            }
-            .fourboxes .bx {
-                width: 24%;
-                text-align:center;
-            }
-            .fourboxes .bx input {
-                width:100%;
-                text-align:center;
-            }
-            .fourboxes .bx span {
-                display: block;
-                margin-top: 2px;
-                text-transform: uppercase;
-                font-size: 11px;
-            }
-            .fixd h2 {
-                margin-top: auto;
-                margin-bottom: 20px;
-            }
-            .fixd a.btnnn {
-                margin-bottom: auto;
-            }
-            .fixd h2, .fixd a {
-                display: block;
-                width: 100%;
-            }
-            @media (min-width: 800px){
-                .fixd {
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    height: 100%;
-                    display: flex;
-                    flex-wrap: wrap;
-                    align-items: center;
-                    justify-content: center;
-                    width: 20%;
-                }
-                .rw {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-                .col60 {
-                    width: 58%;
-                }
-                .col40 {
-                    width: 38%;
-                }
-            }
-            </style>
-
-            <form method="post" action="admin.php?page=WordLive" enctype="multipart/form-data">
+            <form method="post" action="<?= esc_url(admin_url('admin.php?page=WordLive')) ?>" enctype="multipart/form-data">
 
                 <div class="rw">
                     <div class="col60">
-                        
+                        <?php wp_nonce_field(WORDLIVE_PLUGIN_PREFIX."formsettings" ); ?>
+                        <input type="hidden" name="action" value="<?php echo WORDLIVE_PLUGIN_PREFIX; ?>add_settings">
+
                         <h3>Settings</h3>
 
                         <p><input type="checkbox" value="1" name="enable_shop_page_btn" id="enable_shop_page_btn" <?php if( get_option('enable_shop_page_btn') == '1' ){ echo 'checked'; } ?> > &nbsp; <label for="enable_shop_page_btn">Enable button (for shop page)</label></p>
@@ -613,23 +343,154 @@ function wordlive_settings_page(){
 
 function add_theme_menu_item() {
     add_menu_page( 
-        __(PLUGINNAME, 'textdomain' ),
-        PLUGINNAME,
+        __(WORDLIVE_PLUGINNAME, 'textdomain' ),
+        WORDLIVE_PLUGINNAME,
         'manage_options',
-        PLUGINNAME,
+        WORDLIVE_PLUGINNAME,
         'wordlive_settings_page',
-        PLUGINLINK.'assets/img/icon.png',
+        WORDLIVE_PLUGINLINK.'assets/img/icon.png',
     ); 
 }
 add_action("admin_menu", "add_theme_menu_item");
 add_action( 'admin_enqueue_scripts', 'enqueue_admin_js' );
 
 function enqueue_admin_js(){
-    wp_enqueue_script( 'jscolor-js', PLUGINLINK  . '/assets/js/jscolor.js', array( 'jquery') );
-    wp_enqueue_script( 'pop-footer-js', PLUGINLINK  . '/assets/js/pop-footer.js', array( 'jquery') );
+    wp_enqueue_script( WORDLIVE_PLUGIN_PREFIX.'jscolor-js', WORDLIVE_PLUGINLINK  . '/assets/js/jscolor.js', array( 'jquery') );
+    wp_enqueue_script( WORDLIVE_PLUGIN_PREFIX.'pop-footer-js', WORDLIVE_PLUGINLINK  . '/assets/js/pop-footer.js', array( 'jquery') );
+    wp_enqueue_style( WORDLIVE_PLUGIN_PREFIX.'generated', WORDLIVE_PLUGINLINK  . '/assets/css/generated.css');
+    //normal state..
+    $livecall_btn_margin_type = get_option("livecall_btn_margin_type");
+    if( empty(trim($livecall_btn_margin_type)) ){
+        $livecall_btn_margin_type = "px";
+    }
+
+    $livecall_btn_margin_top = get_option("livecall_btn_margin_top");
+    if( empty(trim($livecall_btn_margin_top)) ){
+        $livecall_btn_margin_top = "auto";
+    }
+    $livecall_btn_margin_right = get_option("livecall_btn_margin_right");
+    if( empty(trim($livecall_btn_margin_right)) ){
+        $livecall_btn_margin_right = "auto";
+    }
+    $livecall_btn_margin_bottom = get_option("livecall_btn_margin_bottom");
+    if( empty(trim($livecall_btn_margin_bottom)) ){
+        $livecall_btn_margin_bottom = "auto";
+    }
+    $livecall_btn_margin_left = get_option("livecall_btn_margin_left");
+    if( empty(trim($livecall_btn_margin_left)) ){
+        $livecall_btn_margin_left = "auto";
+    }
+
+    
+    $livecall_btn_padding_type = get_option("livecall_btn_padding_type");
+    if( empty(trim($livecall_btn_padding_type)) ){
+        $livecall_btn_padding_type = "px";
+    }
+
+    $livecall_btn_padding_top = get_option("livecall_btn_padding_top");
+    if( empty(trim($livecall_btn_padding_top)) ){
+        $livecall_btn_padding_top = "0";
+    }
+    $livecall_btn_padding_right = get_option("livecall_btn_padding_right");
+    if( empty(trim($livecall_btn_padding_right)) ){
+        $livecall_btn_padding_right = "0";
+    }
+    $livecall_btn_padding_bottom = get_option("livecall_btn_padding_bottom");
+    if( empty(trim($livecall_btn_padding_bottom)) ){
+        $livecall_btn_padding_bottom = "0";
+    }
+    $livecall_btn_padding_left = get_option("livecall_btn_padding_left");
+    if( empty(trim($livecall_btn_padding_left)) ){
+        $livecall_btn_padding_left = "0";
+    }
+
+    $livecall_btn_textalign = get_option('livecall_btn_textalign');
+    if( empty(trim($livecall_btn_textalign)) ){
+        $livecall_btn_textalign = "center";
+    }
+
+    $livecall_btn_font_size = get_option('livecall_btn_font_size');
+    $livecall_btn_text_color = get_option('livecall_btn_text_color');
+    if( empty(trim($livecall_btn_text_color)) ){
+        $livecall_btn_text_color = "#FFFFFF";
+    }
+    $livecall_btn_border_width = get_option('livecall_btn_border_width');
+    $livecall_btn_border_color = get_option('livecall_btn_border_color');
+    if( empty(trim($livecall_btn_border_color)) ){
+        $livecall_btn_border_color = "#FFFFFF";
+    }
+    $livecall_btn_border_radius = get_option('livecall_btn_border_radius');
+    $livecall_btn_bg_color = get_option('livecall_btn_bg_color');
+    if( empty(trim($livecall_btn_bg_color)) ){
+        $livecall_btn_bg_color = "#27A0B7";
+    }
+
+    //hover state..
+    $livecall_btn_font_size_hover = get_option('livecall_btn_font_size_hover');
+    $livecall_btn_text_color_hover = get_option('livecall_btn_text_color_hover');
+    if( empty(trim($livecall_btn_text_color_hover)) ){
+        $livecall_btn_text_color_hover = "#FFFFFF";
+    }
+    $livecall_btn_border_width_hover = get_option('livecall_btn_border_width_hover');
+    $livecall_btn_border_color_hover = get_option('livecall_btn_border_color_hover');
+    if( empty(trim($livecall_btn_border_color_hover)) ){
+        $livecall_btn_border_color_hover = "#FFFFFF";
+    }
+    $livecall_btn_border_radius_hover = get_option('livecall_btn_border_radius_hover');
+    $livecall_btn_bg_color_hover = get_option('livecall_btn_bg_color_hover');
+    if( empty(trim($livecall_btn_bg_color_hover)) ){
+        $livecall_btn_bg_color_hover = "#000000";
+    }
+
+    $livecall_btn_width = get_option("livecall_btn_width");
+    if( empty(trim($livecall_btn_width)) ){
+        $livecall_btn_width = "auto";
+    }
+    $livecall_btn_height = get_option("livecall_btn_height");
+    if( empty(trim($livecall_btn_height)) ){
+        $livecall_btn_height = "auto";
+    }
+
+    $livecall_btn_fontfamily = get_option('livecall_btn_fontfamily');
+    if( empty(trim($livecall_btn_fontfamily)) ){
+        $livecall_btn_fontfamily = "inherit";
+    }
+
+    $seller_email_subject = get_option('seller_email_subject');
+    if( empty(trim($seller_email_subject)) ){
+        $seller_email_subject = "Sample watching request";
+    }
+    $custom_css = "  a.btnnn {
+        font-family: ".$livecall_btn_fontfamily.";
+        width:".$livecall_btn_width.";
+        height:".$livecall_btn_height.";
+
+        /* top | right | bottom | left */
+        margin: ".$livecall_btn_margin_top.(($livecall_btn_margin_top>0)?$livecall_btn_margin_type:"").' 
+        '.$livecall_btn_margin_right.(($livecall_btn_margin_right>0)?$livecall_btn_margin_type:"").' 
+        '.$livecall_btn_margin_bottom.(($livecall_btn_margin_bottom>0)?$livecall_btn_margin_type:"").' 
+        '.$livecall_btn_margin_left.(($livecall_btn_margin_left>0)?$livecall_btn_margin_type:"").";
+
+        /* top | right | bottom | left */
+        padding:".$livecall_btn_padding_top.(($livecall_btn_padding_top>0)?$livecall_btn_padding_type:"").' 
+        '.$livecall_btn_padding_right.(($livecall_btn_padding_right>0)?$livecall_btn_padding_type:"").' 
+        '.$livecall_btn_padding_bottom.(($livecall_btn_padding_bottom>0)?$livecall_btn_padding_type:"").' 
+        '.$livecall_btn_padding_left.(($livecall_btn_padding_left>0)?$livecall_btn_padding_type:"").";
+        text-decoration: none;
+        display: inline-block;
+        transition: all .2s;
+        color:".esc_attr($livecall_btn_text_color).";
+        background-color:".esc_html($livecall_btn_bg_color).";
+        border:".esc_html($livecall_btn_border_width)." solid ".esc_html($livecall_btn_border_color).";
+        border-radius:".esc_html($livecall_btn_border_radius).";
+        font-size:".esc_html($livecall_btn_font_size).";
+        text-align:".esc_html($livecall_btn_textalign).";
+    }";
+    wp_add_inline_style(WORDLIVE_PLUGIN_PREFIX.'generated', $custom_css );
+
 }
 add_action( 'wp_enqueue_scripts', 'frontend_enqueue_admin_js' );
 function frontend_enqueue_admin_js(){
    
-    wp_enqueue_script( 'pop-footer-js', PLUGINLINK  . '/assets/js/pop-footer.js', array( 'jquery') );
+    wp_enqueue_script( 'pop-footer-js', WORDLIVE_PLUGINLINK  . '/assets/js/pop-footer.js', array( 'jquery') );
 }

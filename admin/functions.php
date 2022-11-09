@@ -4,14 +4,14 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 if( is_plugin_active( "dokan-lite/dokan.php" ) ){
 
-    add_filter( 'dokan_query_var_filter', 'dokan_load_document_menu' );
-    function dokan_load_document_menu( $query_vars ) {
+    add_filter( 'dokan_query_var_filter', 'wordlive_dokan_load_document_menu' );
+    function wordlive_dokan_load_document_menu( $query_vars ) {
         $query_vars['how_to_join_call'] = 'how_to_join_call';
         return $query_vars;
     }
 
-    add_filter( 'dokan_get_dashboard_nav', 'dokan_add_help_menu' );
-    function dokan_add_help_menu( $urls ) {
+    add_filter( 'dokan_get_dashboard_nav', 'wordlive_dokan_add_help_menu' );
+    function wordlive_dokan_add_help_menu( $urls ) {
         $urls['how_to_join_call'] = array(
             'title' => __( 'How to join call?', 'dokan'),
             'icon'  => '<i class="fa fa-info-circle"></i>',
@@ -32,9 +32,9 @@ if( is_plugin_active( "dokan-lite/dokan.php" ) ){
 
     // Add extra field in seller settings
 
-    add_filter( 'dokan_settings_form_bottom', 'extra_fields', 10, 2);
+    add_filter( 'dokan_settings_form_bottom', 'wordlive_extra_fields', 10, 2);
 
-    function extra_fields( $current_user, $profile_info ){
+    function wordlive_extra_fields( $current_user, $profile_info ){
         $watchlive_from = isset( $profile_info['watchlive_from'] ) ? $profile_info['watchlive_from'] : '';
         $watchlive_to = isset( $profile_info['watchlive_to'] ) ? $profile_info['watchlive_to'] : '';
         ?>
@@ -59,8 +59,8 @@ if( is_plugin_active( "dokan-lite/dokan.php" ) ){
 
     //save the field value
 
-    add_action( 'dokan_store_profile_saved', 'save_extra_fields', 15 );
-    function save_extra_fields( $store_id ) {
+    add_action( 'dokan_store_profile_saved', 'wordlive_save_extra_fields', 15 );
+    function wordlive_save_extra_fields( $store_id ) {
         $dokan_settings = dokan_get_store_info($store_id);
         if ( isset( $_POST['watchlive_from'] ) ) {
             $dokan_settings['watchlive_from'] = $_POST['watchlive_from'];
@@ -73,9 +73,9 @@ if( is_plugin_active( "dokan-lite/dokan.php" ) ){
 
     // show on the store page
 
-    add_action( 'dokan_store_header_info_fields', 'save_seller_url', 10);
+    add_action( 'dokan_store_header_info_fields', 'wordlive_save_seller_url', 10);
 
-    function save_seller_url($store_user){
+    function wordlive_save_seller_url($store_user){
 
         // echo $store_user;
         $store_info = dokan_get_store_info($store_user);
@@ -97,8 +97,8 @@ if( is_plugin_active( "dokan-lite/dokan.php" ) ){
 }
 
 //init
-add_action('init', 'addpage_func');
-function addpage_func(){
+add_action('init', 'wordlive_addpage_func');
+function wordlive_addpage_func(){
 
     $save_settings = get_option('save_settings');
 
@@ -153,7 +153,7 @@ function addpage_func(){
 
         //eamil template
         update_option( 'seller_email_subject', 'Sample watching request' );
-        update_option( 'seller_email_temp', 'Hello {seller_name},<BR><BR>Good News. Somebody wants to view your product on Live. Please click on the below link and attend with the customer.<BR>{video_link}<BR><BR>Regards,<BR>'.PLUGINNAME.' Team' );
+        update_option( 'seller_email_temp', 'Hello {seller_name},<BR><BR>Good News. Somebody wants to view your product on Live. Please click on the below link and attend with the customer.<BR>{video_link}<BR><BR>Regards,<BR>'.WORDLIVE_PLUGINNAME.' Team' );
 
     }
 
@@ -205,10 +205,10 @@ function addpage_func(){
 
 
 //css file
-add_action('wp_enqueue_scripts', 'loading_assets_func');
-function loading_assets_func(){
+add_action('wp_enqueue_scripts', 'wordlive_loading_assets_func');
+function wordlive_loading_assets_func(){
 
-    wp_enqueue_style( PLUGINNAME.'-css', PLUGINLINK . "/assets/css/style.css" );
+    wp_enqueue_style( WORDLIVE_PLUGINNAME.'-css', WORDLIVE_PLUGINLINK . "/assets/css/style.css" );
 
     //normal state..
     $livecall_btn_margin_type = get_option("livecall_btn_margin_type");
@@ -348,12 +348,12 @@ function loading_assets_func(){
 
 
 //live call page template
-add_filter( 'page_template', 'page_template_func' );
-function page_template_func( $page_template ) {
+add_filter( 'page_template', 'wordlive_page_template_func' );
+function wordlive_page_template_func( $page_template ) {
 
     $selectedpage = get_option('livecall_slug');
     if ( is_page( $selectedpage ) ) {
-        $page_template = PLUGINPATH . '/templates/livecall.php';
+        $page_template = WORDLIVE_PLUGINPATH . '/templates/livecall.php';
     }
     return $page_template;
 
@@ -382,8 +382,8 @@ if( get_option('enable_product_details_page_btn') == '1' ){
 
     $button_loc_product_details_page = get_option('button_loc_product_details_page');
     
-    add_action( $button_loc_product_details_page, 'addbutton_func' );
-    function addbutton_func() {
+    add_action( $button_loc_product_details_page, 'wordlive_addbutton_func' );
+    function wordlive_addbutton_func() {
         
         $selectedpage = get_option('livecall_slug');
         $text = '<div class="meet_link"><a class="meet_link_link" href="'.home_url($selectedpage).'?id='.get_the_ID().'&t='.time().'" target="_blank">'.get_option('livecall_btn_text').'</a></div>';
@@ -446,7 +446,7 @@ function email_template( $content = "" ) {
 
 
 //add popup to footer
-add_action('wp_footer', 'addpopupmarkup');
+add_action('wp_footer', 'wordlive_addpopupmarkup');
 function addpopupmarkup() {
 
     ?>

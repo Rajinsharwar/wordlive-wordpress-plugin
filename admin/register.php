@@ -1,7 +1,7 @@
 <?php
 //Shortcode: [watchlive product_id=""]
-add_shortcode('watchlive', 'watchlive_func');
-function watchlive_func($atts) {
+add_shortcode('watchlive', 'wordlive_watchlive_func');
+function wordlive_watchlive_func($atts) {
 
     $c = '';
 
@@ -19,8 +19,8 @@ function watchlive_func($atts) {
 
 
 // Shortcode: [videocall width="100%" height="600px" room="testroom"]
-add_shortcode('videocall', 'videocall_func');
-function videocall_func($atts) {
+add_shortcode('videocall', 'wordlive_videocall_func');
+function wordlive_videocall_func($atts) {
 
     $c = '';
 
@@ -206,7 +206,7 @@ function videocall_func($atts) {
             $redirect_link = home_url($selectedpage)."?id=".$prodid;
 
             $c .= 'Please login to call..';
-            echo '<script>window.location="'.$lynk.'?redirect_to='.$redirect_link.'";</script>';
+            return $c.'<script>window.location="'.$lynk.'?redirect_to='.$redirect_link.'";</script>';
 
         }
 

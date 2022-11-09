@@ -1,0 +1,57 @@
+.fourboxes {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    width: 300px;
+}
+.fourboxes .bx {
+    width: 24%;
+    text-align:center;
+}
+.fourboxes .bx input {
+    width:100%;
+    text-align:center;
+}
+.fourboxes .bx span {
+    display: block;
+    margin-top: 2px;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+.fixd h2 {
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+.fixd a.btnnn {
+    margin-bottom: auto;
+}
+.fixd h2, .fixd a {
+    display: block;
+    width: 100%;
+}
+@media (min-width: 800px){
+    .fixd {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        width: 20%;
+    }
+    .rw {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .col60 {
+        width: 58%;
+    }
+    .col40 {
+        width: 38%;
+    }
+}

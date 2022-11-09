@@ -27,11 +27,9 @@ $allowed_html = array(
 );
 $id = '';
 if( isset($_GET['id']) && !empty($_GET['id']) ){
-	$unsafe = $_GET;
 	$sanitize = [];
-	foreach($unsafe as $k=>$s_value){
-		$sanitize[$k] = _sanitize($s_value);
-	}
+	$sanitize[$k] = _sanitize($_GET['id']);
+	
 	$prodid = $sanitize['id'];
 	$prodname = get_the_title($prodid);
 
