@@ -21,7 +21,7 @@ function wordlive_settings_page(){
 
             
             ?>
-            <form method="post" action="<?= esc_url(admin_url('admin.php?page=WordLive')) ?>" enctype="multipart/form-data">
+            <form method="post" action="<?php echo esc_url(admin_url('admin.php?page=WordLive')) ?>" enctype="multipart/form-data">
 
                 <div class="rw">
                     <div class="col60">
@@ -341,7 +341,7 @@ function wordlive_settings_page(){
     <?php
 }
 
-function add_theme_menu_item() {
+function wordlive_add_theme_menu_item() {
     add_menu_page( 
         __(WORDLIVE_PLUGINNAME, 'textdomain' ),
         WORDLIVE_PLUGINNAME,
@@ -351,10 +351,10 @@ function add_theme_menu_item() {
         WORDLIVE_PLUGINLINK.'assets/img/icon.png',
     ); 
 }
-add_action("admin_menu", "add_theme_menu_item");
-add_action( 'admin_enqueue_scripts', 'enqueue_admin_js' );
+add_action("admin_menu", "wordlive_add_theme_menu_item");
+add_action( 'admin_enqueue_scripts', 'wordlive_enqueue_admin_js' );
 
-function enqueue_admin_js(){
+function wordlive_enqueue_admin_js(){
     wp_enqueue_script( WORDLIVE_PLUGIN_PREFIX.'jscolor-js', WORDLIVE_PLUGINLINK  . '/assets/js/jscolor.js', array( 'jquery') );
     wp_enqueue_script( WORDLIVE_PLUGIN_PREFIX.'pop-footer-js', WORDLIVE_PLUGINLINK  . '/assets/js/pop-footer.js', array( 'jquery') );
     wp_enqueue_style( WORDLIVE_PLUGIN_PREFIX.'generated', WORDLIVE_PLUGINLINK  . '/assets/css/generated.css');
@@ -489,8 +489,10 @@ function enqueue_admin_js(){
     wp_add_inline_style(WORDLIVE_PLUGIN_PREFIX.'generated', $custom_css );
 
 }
-add_action( 'wp_enqueue_scripts', 'frontend_enqueue_admin_js' );
-function frontend_enqueue_admin_js(){
+add_action( 'wp_enqueue_scripts', 'wordlive_frontend_enqueue_admin_js' );
+function wordlive_frontend_enqueue_admin_js(){
    
     wp_enqueue_script( 'pop-footer-js', WORDLIVE_PLUGINLINK  . '/assets/js/pop-footer.js', array( 'jquery') );
+    wp_enqueue_script( 'meet-js', 'https://meet.jit.si/external_api.js', false );
+
 }

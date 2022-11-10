@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<?php wp_head(); ?>
-    <script src="https://meet.jit.si/external_api.js"></script>
+ 
 </head>
 <body>
 
@@ -28,11 +28,11 @@ $allowed_html = array(
 $id = '';
 if( isset($_GET['id']) && !empty($_GET['id']) ){
 	$sanitize = [];
-	$sanitize[$k] = _sanitize($_GET['id']);
+	$sanitize["id"] = _sanitize($_GET['id']);
 	
 	$prodid = $sanitize['id'];
 	$prodname = get_the_title($prodid);
-
+	
 	$prodcat = [];
 	$pcat = get_the_terms($prodid, "product_cat");
 	foreach ($pcat as $procat) {

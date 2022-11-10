@@ -63,10 +63,11 @@ if( is_plugin_active( "dokan-lite/dokan.php" ) ){
     function wordlive_save_extra_fields( $store_id ) {
         $dokan_settings = dokan_get_store_info($store_id);
         if ( isset( $_POST['watchlive_from'] ) ) {
-            $dokan_settings['watchlive_from'] = $_POST['watchlive_from'];
+
+            $dokan_settings['watchlive_from'] = sanitize_text_field($_POST['watchlive_from']);
         }
         if ( isset( $_POST['watchlive_to'] ) ) {
-            $dokan_settings['watchlive_to'] = $_POST['watchlive_to'];
+            $dokan_settings['watchlive_to'] = sanitize_text_field($_POST['watchlive_to']);
         }
         update_user_meta( $store_id, 'dokan_profile_settings', $dokan_settings );
     }
@@ -308,41 +309,38 @@ function wordlive_loading_assets_func(){
         $livecall_btn_fontfamily = "inherit";
     }
 
-    ?><style>
+    ?>
+    <?php 
+    $empty= "";
+    $style=  "
     a.meet_link_link {
-        font-family: <?php echo $livecall_btn_fontfamily; ?>;
-        width: <?php echo $livecall_btn_width; ?>;
-        height: <?php echo $livecall_btn_height; ?>;
+        font-family:".$livecall_btn_fontfamily.";
+        width:".$livecall_btn_width;";
+        height:".$livecall_btn_height.";
 
         /* top | right | bottom | left */
-        margin: <?php echo $livecall_btn_margin_top.(($livecall_btn_margin_top>0)?$livecall_btn_margin_type:"").' 
-        '.$livecall_btn_margin_right.(($livecall_btn_margin_right>0)?$livecall_btn_margin_type:"").' 
-        '.$livecall_btn_margin_bottom.(($livecall_btn_margin_bottom>0)?$livecall_btn_margin_type:"").' 
-        '.$livecall_btn_margin_left.(($livecall_btn_margin_left>0)?$livecall_btn_margin_type:""); 
-        ?> !important;
+        margin:".$livecall_btn_margin_top.(($livecall_btn_margin_top>0)?$livecall_btn_margin_type:$empty).$livecall_btn_margin_right.(($livecall_btn_margin_right>0)?$livecall_btn_margin_type:$empty).$livecall_btn_margin_bottom.(($livecall_btn_margin_bottom>0)?$livecall_btn_margin_type:$empty).$livecall_btn_margin_left.(($livecall_btn_margin_left>0)?$livecall_btn_margin_type:$empty)."; !important;
 
         /* top | right | bottom | left */
-        padding: <?php echo $livecall_btn_padding_top.(($livecall_btn_padding_top>0)?$livecall_btn_padding_type:"").' 
-        '.$livecall_btn_padding_right.(($livecall_btn_padding_right>0)?$livecall_btn_padding_type:"").' 
-        '.$livecall_btn_padding_bottom.(($livecall_btn_padding_bottom>0)?$livecall_btn_padding_type:"").' 
-        '.$livecall_btn_padding_left.(($livecall_btn_padding_left>0)?$livecall_btn_padding_type:""); 
-        ?> !important;
+        padding: ".$livecall_btn_padding_top.(($livecall_btn_padding_top>0)?$livecall_btn_padding_type:$empty).$livecall_btn_padding_right.(($livecall_btn_padding_right>0)?$livecall_btn_padding_type:$empty).$livecall_btn_padding_bottom.(($livecall_btn_padding_bottom>0)?$livecall_btn_padding_type:$empty).$livecall_btn_padding_left.(($livecall_btn_padding_left>0)?$livecall_btn_padding_type:$empty)."; !important;
 
-        color: <?php echo $livecall_btn_text_color; ?> !important;
-        background-color: <?php echo $livecall_btn_bg_color; ?> !important;
-        border: <?php echo $livecall_btn_border_width; ?> solid <?php echo $livecall_btn_border_color; ?> !important;
-        border-radius: <?php echo $livecall_btn_border_radius; ?> !important;
-        font-size: <?php echo $livecall_btn_font_size; ?> !important;
-        text-align: <?php echo $livecall_btn_textalign; ?>;
+        color: ". $livecall_btn_text_color." !important;
+        background-color:".$livecall_btn_bg_color."!important;
+        border: ".$livecall_btn_border_width."solid".$livecall_btn_border_color."!important;
+        border-radius:".$livecall_btn_border_radius."!important;
+        font-size: ".$livecall_btn_font_size."!important;
+        text-align:".$livecall_btn_textalign.";
     }
     a.meet_link_link:hover {
-        color: <?php echo $livecall_btn_text_color_hover; ?> !important;
-        background-color: <?php echo $livecall_btn_bg_color_hover; ?> !important;
-        border: <?php echo $livecall_btn_border_width_hover; ?> solid <?php echo $livecall_btn_border_color_hover; ?> !important;
-        border-radius: <?php echo $livecall_btn_border_radius_hover; ?> !important;
-        font-size: <?php echo $livecall_btn_font_size_hover; ?> !important;
-    }
-    </style><?php
+        color: ".$livecall_btn_text_color_hover."!important;
+        background-color:".$livecall_btn_bg_color_hover." !important;
+        border: ". $livecall_btn_border_width_hover." solid". $livecall_btn_border_color_hover." !important;
+        border-radius: ".$livecall_btn_border_radius_hover."!important;
+        font-size: ".$livecall_btn_font_size_hover." !important;
+    }";
+    wp_add_inline_style(WORDLIVE_PLUGINNAME.'-css', $style );
+    ?>
+    <?php
 
 }
 
@@ -447,83 +445,10 @@ function email_template( $content = "" ) {
 
 //add popup to footer
 add_action('wp_footer', 'wordlive_addpopupmarkup');
-function addpopupmarkup() {
+function wordlive_addpopupmarkup() {
 
     ?>
     
-    <style>
-    .woolive_popup {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.3);
-        z-index: 9999999;
-        display: none;
-    }
-    .woolive_popup_container {
-        position: relative;
-        max-width: 70%;
-        background: #fff;
-        margin: 10px auto 0;
-        overflow-x: hidden;
-    }
-    @media (max-width:800px){
-        .woolive_popup_container {
-            max-width: 100%;
-        }
-    }
-    a.woolive_popup_minus {
-        position: absolute;
-        top: 0;
-        right: 30px;
-        width: 30px;
-        height: 30px;
-        color: #000;
-        text-align: center;
-        border-radius: 5px;
-        line-height: 25px;
-        font-size: 20px;
-    }
-    a.woolive_popup_close {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 30px;
-        height: 30px;
-        color: #000;
-        text-align: center;
-        border-radius: 5px;
-        line-height: 25px;
-        font-size: 20px;
-    }
-    .woolive_popup_content {
-        padding: 30px 0 0;
-    }
-    a.open_popup_div {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        z-index: 99999999999;
-        color: #000;
-        background: #f7f7f7;
-        padding: 6px 20px;
-        font-size: 13px;
-        box-shadow: 0 0 3px 0 rgb(0 0 0 / 40%);
-        border-top-left-radius: 10px;
-        font-weight: 500;
-        display: none;
-    }
-    a.open_popup_div span {
-        display: inline-block;
-        margin-left: 20px;
-        font-size: 18px;
-    }
-    .woolive_popup a.open_popup_div {
-        display: none !important;
-    }
-    </style>
     <div class="woolive_popup"><div class="woolive_popup_container">
         <a href="javascript:;" class="woolive_popup_minus">&minus;</a>
         <a href="javascript:;" class="woolive_popup_close">&times;</a>
