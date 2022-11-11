@@ -9,6 +9,11 @@
  */
 
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 define( 'WORDLIVE_PLUGINLINK', plugin_dir_url(__FILE__) );
 define( 'WORDLIVE_PLUGINPATH', __DIR__ );
 define( 'WORDLIVE_PLUGINNAME', "WordLive" );

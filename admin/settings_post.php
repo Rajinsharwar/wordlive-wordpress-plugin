@@ -1,6 +1,15 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce']) ) {
+
+    // Actions to do should the nonce is invalid
+    exit;
+  
+  } 
+
       check_admin_referer( WORDLIVE_PLUGIN_PREFIX."formsettings");
-      $safe = $_POST;
       $sanitize = [];
       $allowed_variable = array(
       'seller_email_temp',
@@ -39,7 +48,7 @@
     $sanitize=[];
       foreach($allowed_variable as $safe_key=>$safe_value){
             if(isset($_POST[$safe_value])){
-                $sanitize[$safe_value] = _sanitize($_POST[$safe_value]);
+                $sanitize[$safe_value] = wordlive_sanitize($_POST[$safe_value]);
                 if($safe_value=="seller_email_temp" && !empty($_POST[$safe_value])){
                     $sanitize[$safe_value] = sanitize_email($_POST[$safe_value]);
                 }

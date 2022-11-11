@@ -11,6 +11,10 @@
 <body>
 
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $allowed_html = array(
 	'a'      => array(
 		'href'  => array(),
@@ -28,7 +32,7 @@ $allowed_html = array(
 $id = '';
 if( isset($_GET['id']) && !empty($_GET['id']) ){
 	$sanitize = [];
-	$sanitize["id"] = _sanitize($_GET['id']);
+	$sanitize["id"] = wordlive_sanitize($_GET['id']);
 	
 	$prodid = $sanitize['id'];
 	$prodname = get_the_title($prodid);
@@ -73,9 +77,9 @@ if( isset($_GET['id']) && !empty($_GET['id']) ){
 	
 	$emailtemp = str_replace( array("{seller_name}", "{video_link}", "{product_name}", "{product_id}", "{product_category}", "{customer_name}"), array($seller_name, $join_call_link, $prodname, $prodid, $prodcategory, $customer_name), get_option('seller_email_temp') );
 
-	$message = email_template($emailtemp);
+	$message = wordlive_email_template($emailtemp);
 	// echo $message; die;
-	sendmail( $to, $subject, $message );
+	wordlive_sendmail( $to, $subject, $message );
 	
 
 	$dokan_profile_settings = get_user_meta($prod_author, "dokan_profile_settings", true);

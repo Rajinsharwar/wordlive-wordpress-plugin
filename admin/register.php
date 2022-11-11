@@ -1,5 +1,9 @@
 <?php
 //Shortcode: [watchlive product_id=""]
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 add_shortcode('watchlive', 'wordlive_watchlive_func');
 function wordlive_watchlive_func($atts) {
 
@@ -198,7 +202,7 @@ function wordlive_videocall_func($atts) {
                 $lynk = home_url('/');
             }
             if(isset($_GET['id'])){
-                $safeGet = _sanitize($_GET['id']);
+                $safeGet = wordlive_sanitize($_GET['id']);
             }
             $prodid = (isset($safeGet) && !empty($safeGet)) ? $safeGet : "";
 

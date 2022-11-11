@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
@@ -43,7 +46,7 @@ if( is_plugin_active( "dokan-lite/dokan.php" ) ){
                 <?php _e( 'Watch live (from)', 'dokan' ); ?>
             </label>
             <div class="dokan-w5">
-                <input type="text" class="dokan-form-control input-md valid" name="watchlive_from" id="reg_watchlive_from" value="<?php echo $watchlive_from; ?>" />
+                <input type="text" class="dokan-form-control input-md valid" name="watchlive_from" id="reg_watchlive_from" value="<?php echo esc_attr($watchlive_from); ?>" />
             </div>
         </div>
         <div class="gregcustom dokan-form-group">
@@ -51,7 +54,7 @@ if( is_plugin_active( "dokan-lite/dokan.php" ) ){
                 <?php _e( 'Watch live (to)', 'dokan' ); ?>
             </label>
             <div class="dokan-w5">
-                <input type="text" class="dokan-form-control input-md valid" name="watchlive_to" id="reg_watchlive_to" value="<?php echo $watchlive_to; ?>" />
+                <input type="text" class="dokan-form-control input-md valid" name="watchlive_to" id="reg_watchlive_to" value="<?php echo esc_attr($watchlive_to); ?>" />
             </div>
         </div>
         <?php
@@ -385,7 +388,7 @@ if( get_option('enable_product_details_page_btn') == '1' ){
         
         $selectedpage = get_option('livecall_slug');
         $text = '<div class="meet_link"><a class="meet_link_link" href="'.home_url($selectedpage).'?id='.get_the_ID().'&t='.time().'" target="_blank">'.get_option('livecall_btn_text').'</a></div>';
-        echo $text;
+        echo esc_attr($text);
 
     }
 
@@ -393,7 +396,7 @@ if( get_option('enable_product_details_page_btn') == '1' ){
 
 
 //sendmail
-function sendmail( $to, $subject, $message ) {
+function wordlive_sendmail( $to, $subject, $message ) {
     
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -407,7 +410,7 @@ function sendmail( $to, $subject, $message ) {
 
 
 //email template 
-function email_template( $content = "" ) {
+function wordlive_email_template( $content = "" ) {
 
     $mail_footer_text = "&copy; 2022 Copyright, All rights reserved";
 
@@ -459,7 +462,7 @@ function wordlive_addpopupmarkup() {
 
 }
 
-function _sanitize($data)
+function wordlive_sanitize($data)
 {
     return strip_tags(
         stripslashes(

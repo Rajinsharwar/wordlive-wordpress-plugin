@@ -1,5 +1,7 @@
 <?php //custom settings page.. 
-
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 function wordlive_settings_page(){
     ?>
@@ -15,22 +17,25 @@ function wordlive_settings_page(){
             }
 
             if( isset($_GET['success']) && $_GET['success'] == '1' ){
-                echo '<div style="color: #3c763d;background-color: #dff0d8;border-color: #d6e9c6;padding: 10px 16px;margin-bottom: 20px;border: 1px solid transparent;border-radius: 4px;display: inline-block;">Changes are saved successfully..</div>';
+                echo esc_attr('<div style="color: #3c763d;background-color: #dff0d8;border-color: #d6e9c6;padding: 10px 16px;margin-bottom: 20px;border: 1px solid transparent;border-radius: 4px;display: inline-block;">Changes are saved successfully..</div>');
             }
             
 
             
             ?>
-            <form method="post" action="<?php echo esc_url(admin_url('admin.php?page=WordLive')) ?>" enctype="multipart/form-data">
+            <?php
+                $nonceUrl = wp_nonce_url(admin_url('admin.php?page=WordLive'));
+            ?>
+            <form method="post" action="<?php echo esc_url($nonceUrl) ?>" enctype="multipart/form-data">
 
                 <div class="rw">
                     <div class="col60">
                         <?php wp_nonce_field(WORDLIVE_PLUGIN_PREFIX."formsettings" ); ?>
-                        <input type="hidden" name="action" value="<?php echo WORDLIVE_PLUGIN_PREFIX; ?>add_settings">
+                        <input type="hidden" name="action" value="<?php echo esc_attr(WORDLIVE_PLUGIN_PREFIX); ?>add_settings">
 
                         <h3>Settings</h3>
 
-                        <p><input type="checkbox" value="1" name="enable_shop_page_btn" id="enable_shop_page_btn" <?php if( get_option('enable_shop_page_btn') == '1' ){ echo 'checked'; } ?> > &nbsp; <label for="enable_shop_page_btn">Enable button (for shop page)</label></p>
+                        <p><input type="checkbox" value="1" name="enable_shop_page_btn" id="enable_shop_page_btn" <?php if( get_option('enable_shop_page_btn') == '1' ){ echo esc_attr('checked'); } ?> > &nbsp; <label for="enable_shop_page_btn">Enable button (for shop page)</label></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Button location (for shop page)</label>
                             <?php $button_loc_shop_page = get_option('button_loc_shop_page'); ?>
@@ -40,7 +45,7 @@ function wordlive_settings_page(){
                                     'woocommerce_loop_add_to_cart_link'=>'After add to cart button'
                                 ); 
                                 foreach($arr as $key => $val) {
-                                    ?><option value="<?php echo $key; ?>" <?php echo ($button_loc_shop_page == $key) ? "selected" : ""; ?> ><?php echo $val; ?></option><?php
+                                    ?><option value="<?php echo esc_attr($key); ?>" <?php echo esc_attr(($button_loc_shop_page == $key)) ? esc_attr("selected") : ""; ?> ><?php echo esc_attr($val); ?></option><?php
                                 } ?>
                             </select></p>
 
@@ -58,7 +63,7 @@ function wordlive_settings_page(){
                                     'woocommerce_after_single_product_summary' => 'After product summary',
                                 ); 
                                 foreach($arrr as $key => $val) {
-                                    ?><option value="<?php echo $key; ?>" <?php echo ($button_loc_product_details_page == $key) ? "selected" : ""; ?> ><?php echo $val; ?></option><?php
+                                    ?><option value="<?php echo esc_attr($key); ?>" <?php echo esc_attr(($button_loc_product_details_page == $key)) ? esc_attr("selected") : ""; ?> ><?php echo esc_attr($val); ?></option><?php
                                 } ?>
                             </select></p>
 
@@ -66,8 +71,8 @@ function wordlive_settings_page(){
                         
                         <p><label style="display: block; margin-bottom: 5px;">Guest login enabled?</label>
                             <select name="guestlogin_enable" style="border-radius: 5px; min-width: 300px; padding:6px 12px;" required>
-                                <option value="no" <?php if(get_option('guestlogin_enable')=='no'){ echo 'selected'; } ?> >No</option>
-                                <option value="yes" <?php if(get_option('guestlogin_enable')=='yes'){ echo 'selected'; } ?> >Yes</option>
+                                <option value="no" <?php if(get_option('guestlogin_enable')=='no'){ echo esc_attr('selected'); } ?> >No</option>
+                                <option value="yes" <?php if(get_option('guestlogin_enable')=='yes'){ echo esc_attr('selected'); } ?> >Yes</option>
                             </select></p>
                         
                         <p><label style="display: block; margin-bottom: 5px;">Login page</label>
@@ -82,7 +87,7 @@ function wordlive_settings_page(){
                                         $post_id = get_the_ID();
                                         $pslug = get_post_field( 'post_name', $post_id );
                                         ?>
-                                        <option value="<?php echo $pslug; ?>" <?php if($selectedpagee == $pslug){ echo 'selected'; } ?> ><?php the_title(); ?></option>
+                                        <option value="<?php echo esc_attr($pslug); ?>" <?php if($selectedpagee == $pslug){ echo esc_attr('selected'); } ?> ><?php the_title(); ?></option>
                                         <?php
 
                                     }
@@ -103,7 +108,7 @@ function wordlive_settings_page(){
                                         $post_id = get_the_ID();
                                         $pslug = get_post_field( 'post_name', $post_id );
                                         ?>
-                                        <option value="<?php echo $pslug; ?>" <?php if($selectedpagee == $pslug){ echo 'selected'; } ?> ><?php the_title(); ?></option>
+                                        <option value="<?php echo esc_attr($pslug); ?>" <?php if($selectedpagee == $pslug){ echo esc_attr('selected'); } ?> ><?php the_title(); ?></option>
                                         <?php
 
                                     }
@@ -124,7 +129,7 @@ function wordlive_settings_page(){
                                         $post_id = get_the_ID();
                                         $pslug = get_post_field( 'post_name', $post_id );
                                         ?>
-                                        <option value="<?php echo $pslug; ?>" <?php if($selectedpage == $pslug){ echo 'selected'; } ?> ><?php the_title(); ?></option>
+                                        <option value="<?php echo esc_attr($pslug); ?>" <?php if($selectedpage == $pslug){ echo esc_attr('selected'); } ?> ><?php the_title(); ?></option>
                                         <?php
 
                                     }
@@ -134,40 +139,40 @@ function wordlive_settings_page(){
                             </select></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Live call button (text)</label>
-                            <input onkeyup="jQuery('a.btnnn').text(this.value)" type="text" name="livecall_btn_text" value="<?php echo get_option('livecall_btn_text'); ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;" required></p>
+                            <input onkeyup="jQuery('a.btnnn').text(this.value)" type="text" name="livecall_btn_text" value="<?php echo esc_attr(get_option('livecall_btn_text')); ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;" required></p>
 
                         <BR><BR>
 
                         <h3>Button Style</h3>
 
                         <p><label style="display: block; margin-bottom: 5px;">Width</label>
-                            <input onkeyup="jQuery('a.btnnn').css('width', this.value)" type="text" name="livecall_btn_width" value="<?php echo $livecall_btn_width; ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                            <input onkeyup="jQuery('a.btnnn').css('width', this.value)" type="text" name="livecall_btn_width" value="<?php echo esc_attr($livecall_btn_width); ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Height</label>
-                            <input onkeyup="jQuery('a.btnnn').css('height', this.value)" type="text" name="livecall_btn_height" value="<?php echo $livecall_btn_height; ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                            <input onkeyup="jQuery('a.btnnn').css('height', this.value)" type="text" name="livecall_btn_height" value="<?php echo esc_attr($livecall_btn_height); ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Margin</label></p>
                         <p><?php 
                             $typs = array("px", "em", "%"); 
                             foreach($typs as $typ) {
-                                ?><input type="radio" name="livecall_btn_margin_type" value="<?php echo $typ; ?>" <?php if( $typ == $livecall_btn_margin_type ){ echo 'checked'; } ?>> <?php echo $typ; ?> &nbsp; <?php
+                                ?><input type="radio" name="livecall_btn_margin_type" value="<?php echo esc_attr($typ); ?>" <?php if( $typ == $livecall_btn_margin_type ){ echo esc_attr('checked'); } ?>> <?php echo $typ; ?> &nbsp; <?php
                             }
                             ?></p>
                         <div class="fourboxes">
                             <div class="bx">
-                                <input type="text" name="livecall_btn_margin_top" value="<?php echo $livecall_btn_margin_top; ?>">
+                                <input type="text" name="livecall_btn_margin_top" value="<?php echo esc_attr($livecall_btn_margin_top); ?>">
                                 <span>Top</span>
                             </div>
                             <div class="bx">
-                                <input type="text" name="livecall_btn_margin_right" value="<?php echo $livecall_btn_margin_right; ?>">
+                                <input type="text" name="livecall_btn_margin_right" value="<?php echo esc_attr($livecall_btn_margin_right); ?>">
                                 <span>Right</span>
                             </div>
                             <div class="bx">
-                                <input type="text" name="livecall_btn_margin_bottom" value="<?php echo $livecall_btn_margin_bottom; ?>">
+                                <input type="text" name="livecall_btn_margin_bottom" value="<?php echo esc_attr($livecall_btn_margin_bottom); ?>">
                                 <span>Bottom</span>
                             </div>
                             <div class="bx">
-                                <input type="text" name="livecall_btn_margin_left" value="<?php echo $livecall_btn_margin_left; ?>">
+                                <input type="text" name="livecall_btn_margin_left" value="<?php echo esc_attr($livecall_btn_margin_left); ?>">
                                 <span>Left</span>
                             </div>
                         </div>
@@ -176,24 +181,24 @@ function wordlive_settings_page(){
                         <p><?php 
                             $typss = array("px", "em", "%"); 
                             foreach($typss as $typ) {
-                                ?><input type="radio" name="livecall_btn_padding_type" value="<?php echo $typ; ?>" <?php if( $typ == $livecall_btn_padding_type ){ echo 'checked'; } ?>> <?php echo $typ; ?> &nbsp; <?php
+                                ?><input type="radio" name="livecall_btn_padding_type" value="<?php echo esc_attr($typ); ?>" <?php if( $typ == $livecall_btn_padding_type ){ echo esc_attr('checked'); } ?>> <?php echo esc_attr($typ); ?> &nbsp; <?php
                             }
                             ?></p>
                         <div class="fourboxes">
                             <div class="bx">
-                                <input type="text" onkeyup="jQuery('a.btnnn').css('padding-top', this.value+jQuery('[name=livecall_btn_padding_type]').val())" name="livecall_btn_padding_top" value="<?php echo $livecall_btn_padding_top; ?>">
+                                <input type="text" onkeyup="jQuery('a.btnnn').css('padding-top', this.value+jQuery('[name=livecall_btn_padding_type]').val())" name="livecall_btn_padding_top" value="<?php echo esc_attr($livecall_btn_padding_top); ?>">
                                 <span>Top</span>
                             </div>
                             <div class="bx">
-                                <input type="text" onkeyup="jQuery('a.btnnn').css('padding-right', this.value+jQuery('[name=livecall_btn_padding_type]').val())" name="livecall_btn_padding_right" value="<?php echo $livecall_btn_padding_right; ?>">
+                                <input type="text" onkeyup="jQuery('a.btnnn').css('padding-right', this.value+jQuery('[name=livecall_btn_padding_type]').val())" name="livecall_btn_padding_right" value="<?php echo esc_attr($livecall_btn_padding_right); ?>">
                                 <span>Right</span>
                             </div>
                             <div class="bx">
-                                <input type="text" onkeyup="jQuery('a.btnnn').css('padding-bottom', this.value+jQuery('[name=livecall_btn_padding_type]').val())" name="livecall_btn_padding_bottom" value="<?php echo $livecall_btn_padding_bottom; ?>">
+                                <input type="text" onkeyup="jQuery('a.btnnn').css('padding-bottom', this.value+jQuery('[name=livecall_btn_padding_type]').val())" name="livecall_btn_padding_bottom" value="<?php echo esc_attr($livecall_btn_padding_bottom); ?>">
                                 <span>Bottom</span>
                             </div>
                             <div class="bx">
-                                <input type="text" onkeyup="jQuery('a.btnnn').css('padding-left', this.value+jQuery('[name=livecall_btn_padding_type]').val())" name="livecall_btn_padding_left" value="<?php echo $livecall_btn_padding_left; ?>">
+                                <input type="text" onkeyup="jQuery('a.btnnn').css('padding-left', this.value+jQuery('[name=livecall_btn_padding_type]').val())" name="livecall_btn_padding_left" value="<?php echo esc_attr($livecall_btn_padding_left); ?>">
                                 <span>Left</span>
                             </div>
                         </div>
@@ -203,7 +208,7 @@ function wordlive_settings_page(){
                                 <?php 
                                 $alignments = array("left", "center", "right"); 
                                 foreach($alignments as $align) {
-                                    ?><option value="<?php echo $align; ?>" <?php if( $align == $livecall_btn_textalign ){ echo 'selected'; } ?>><?php echo $align; ?></option><?php
+                                    ?><option value="<?php echo esc_attr($align); ?>" <?php if( $align == $livecall_btn_textalign ){ echo esc_attr('selected'); } ?>><?php echo esc_attr($align); ?></option><?php
                                 }
                                 ?>
                             </select></p>
@@ -215,7 +220,7 @@ function wordlive_settings_page(){
 
                                     $ii = ($i * 2).'px';
 
-                                    ?><option value="<?php echo $ii; ?>" <?php if( $ii == $livecall_btn_font_size ){ echo 'selected'; } ?>><?php echo $ii; ?></option><?php
+                                    ?><option value="<?php echo esc_attr($ii); ?>" <?php if( $ii == $livecall_btn_font_size ){ echo esc_attr('selected'); } ?>><?php echo esc_attr($ii); ?></option><?php
                                 }
                                 ?>
                             </select>
@@ -238,26 +243,26 @@ function wordlive_settings_page(){
                             <select onchange="jQuery('a.btnnn').css('font-family', this.value)" name="livecall_btn_fontfamily" style="border-radius: 5px; min-width: 300px; padding:6px 12px;">
                                 <?php 
                                 foreach($font_family as $family => $family_name){
-                                    ?><option value="<?php echo $family; ?>" <?php if( $family == $livecall_btn_fontfamily ){ echo 'selected'; } ?>><?php echo $family_name; ?></option><?php
+                                    ?><option value="<?php echo esc_attr($family); ?>" <?php if( $family == $livecall_btn_fontfamily ){ echo esc_attr('selected'); } ?>><?php echo esc_attr($family_name); ?></option><?php
                                 }
                                 ?>
                             </select>
                             <?php /*<input onkeyup="jQuery('a.btnnn').css('font-family', this.value)" type="text" name="livecall_btn_fontfamily" value="<?php echo $livecall_btn_fontfamily; ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;">*/ ?></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Text color</label>
-                            <input onchange="jQuery('a.btnnn').css('color', this.value)" type="text" name="livecall_btn_text_color" value="<?php echo $livecall_btn_text_color; ?>" data-jscolor="{}" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                            <input onchange="jQuery('a.btnnn').css('color', this.value)" type="text" name="livecall_btn_text_color" value="<?php echo esc_attr($livecall_btn_text_color); ?>" data-jscolor="{}" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Border width</label>
-                            <input onkeyup="jQuery('a.btnnn').css('border-width', this.value)" type="text" name="livecall_btn_border_width" value="<?php echo $livecall_btn_border_width; ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                            <input onkeyup="jQuery('a.btnnn').css('border-width', this.value)" type="text" name="livecall_btn_border_width" value="<?php echo esc_attr($livecall_btn_border_width); ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Border color</label>
-                            <input onchange="jQuery('a.btnnn').css('border-color', this.value)" type="text" name="livecall_btn_border_color" value="<?php echo $livecall_btn_border_color; ?>" data-jscolor="{}" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                            <input onchange="jQuery('a.btnnn').css('border-color', this.value)" type="text" name="livecall_btn_border_color" value="<?php echo esc_attr($livecall_btn_border_color); ?>" data-jscolor="{}" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Border radius</label>
-                            <input onkeyup="jQuery('a.btnnn').css('border-radius', this.value)" type="text" name="livecall_btn_border_radius" value="<?php echo $livecall_btn_border_radius; ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                            <input onkeyup="jQuery('a.btnnn').css('border-radius', this.value)" type="text" name="livecall_btn_border_radius" value="<?php echo esc_attr($livecall_btn_border_radius); ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Background color</label>
-                            <input onchange="jQuery('a.btnnn').css('background-color', this.value)" type="text" name="livecall_btn_bg_color" value="<?php echo $livecall_btn_bg_color; ?>" data-jscolor="{}" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                            <input onchange="jQuery('a.btnnn').css('background-color', this.value)" type="text" name="livecall_btn_bg_color" value="<?php echo esc_attr($livecall_btn_bg_color); ?>" data-jscolor="{}" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <BR><BR>
 
@@ -270,32 +275,32 @@ function wordlive_settings_page(){
 
                                     $ii = ($i * 2).'px';
 
-                                    ?><option value="<?php echo $ii; ?>" <?php if( $ii == $livecall_btn_font_size_hover ){ echo 'selected'; } ?>><?php echo $ii; ?></option><?php
+                                    ?><option value="<?php echo esc_attr($ii); ?>" <?php if( $ii == $livecall_btn_font_size_hover ){ echo esc_attr('selected'); } ?>><?php echo esc_attr($ii); ?></option><?php
                                 }
                                 ?>
                             </select>
                             <?php /*<input type="text" name="livecall_btn_font_size_hover" value="<?php echo $livecall_btn_font_size_hover; ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;">*/ ?></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Text color</label>
-                            <input type="text" name="livecall_btn_text_color_hover" value="<?php echo $livecall_btn_text_color_hover; ?>" data-jscolor="{}" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                            <input type="text" name="livecall_btn_text_color_hover" value="<?php echo esc_attr($livecall_btn_text_color_hover); ?>" data-jscolor="{}" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Border width</label>
-                            <input type="text" name="livecall_btn_border_width_hover" value="<?php echo $livecall_btn_border_width_hover; ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                            <input type="text" name="livecall_btn_border_width_hover" value="<?php echo esc_attr($livecall_btn_border_width_hover); ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Border color</label>
-                            <input type="text" name="livecall_btn_border_color_hover" value="<?php echo $livecall_btn_border_color_hover; ?>" data-jscolor="{}" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                            <input type="text" name="livecall_btn_border_color_hover" value="<?php echo esc_attr($livecall_btn_border_color_hover); ?>" data-jscolor="{}" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Border radius</label>
-                            <input type="text" name="livecall_btn_border_radius_hover" value="<?php echo $livecall_btn_border_radius_hover; ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                            <input type="text" name="livecall_btn_border_radius_hover" value="<?php echo esc_attr($livecall_btn_border_radius_hover); ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <p><label style="display: block; margin-bottom: 5px;">Background color</label>
-                            <input type="text" name="livecall_btn_bg_color_hover" value="<?php echo $livecall_btn_bg_color_hover; ?>" data-jscolor="{}" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                            <input type="text" name="livecall_btn_bg_color_hover" value="<?php echo esc_attr($livecall_btn_bg_color_hover); ?>" data-jscolor="{}" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <BR><BR>
 
                         <h3>Email subject</h3>
 
-                        <p><input type="text" name="seller_email_subject" value="<?php echo $seller_email_subject; ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
+                        <p><input type="text" name="seller_email_subject" value="<?php echo esc_attr($seller_email_subject); ?>" style="border-radius: 5px; min-width: 300px; padding:6px 12px;"></p>
 
                         <BR>
 
