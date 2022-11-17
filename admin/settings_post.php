@@ -43,23 +43,28 @@ if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce']) ) {
       'livecall_btn_border_radius_hover',
       'livecall_btn_bg_color_hover',
       'seller_email_subject',
-      'seller_email_temp'
+      'seller_email_temp',
+      'livecall_btn_border_color',
+      'livecall_btn_border_radius',
+      'livecall_btn_bg_color',
+      'livecall_btn_font_size_hover',
+      'livecall_btn_text_color_hover',
+      'livecall_btn_border_width_hover',
+     // 'livecall_btn_width'
     );
     $sanitize=[];
       foreach($allowed_variable as $safe_key=>$safe_value){
             if(isset($_POST[$safe_value])){
                 $sanitize[$safe_value] = wordlive_sanitize($_POST[$safe_value]);
                 if($safe_value=="seller_email_temp" && !empty($_POST[$safe_value])){
-                    $sanitize[$safe_value] = sanitize_email($_POST[$safe_value]);
-                }
-                if($safe_value=="seller_email_temp" && !empty($_POST[$safe_value])){
-                    $sanitize[$safe_value] = sanitize_textarea_field($_POST[$safe_value]);
+                    $sanitize[$safe_value] = wp_kses_post($_POST[$safe_value]);
                 }
             }
               
        
          
       }
+      //echo "<pre>";print_r($sanitize);die;
       update_option('save_settings', '1');
 
       //main settings
@@ -122,7 +127,8 @@ if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce']) ) {
       //eamil template
       update_option( 'seller_email_subject', $sanitize['seller_email_subject'] );
       update_option( 'seller_email_temp', $sanitize['seller_email_temp'] );
-
+      wp_redirect( admin_url( 'admin.php?page=WordLive&success=1' ) );
+      exit;
       //echo '<script>window.location="admin.php?page=WordLive&success=1"</script>';
 
 ?>

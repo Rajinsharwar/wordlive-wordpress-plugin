@@ -4,6 +4,107 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function wordlive_settings_page(){
+    $livecall_btn_margin_type = get_option("livecall_btn_margin_type");
+    if( empty(trim($livecall_btn_margin_type)) ){
+        $livecall_btn_margin_type = "px";
+    }
+
+    $livecall_btn_margin_top = get_option("livecall_btn_margin_top");
+    if( empty(trim($livecall_btn_margin_top)) ){
+        $livecall_btn_margin_top = "auto";
+    }
+    $livecall_btn_margin_right = get_option("livecall_btn_margin_right");
+    if( empty(trim($livecall_btn_margin_right)) ){
+        $livecall_btn_margin_right = "auto";
+    }
+    $livecall_btn_margin_bottom = get_option("livecall_btn_margin_bottom");
+    if( empty(trim($livecall_btn_margin_bottom)) ){
+        $livecall_btn_margin_bottom = "auto";
+    }
+    $livecall_btn_margin_left = get_option("livecall_btn_margin_left");
+    if( empty(trim($livecall_btn_margin_left)) ){
+        $livecall_btn_margin_left = "auto";
+    }
+
+    
+    $livecall_btn_padding_type = get_option("livecall_btn_padding_type");
+    if( empty(trim($livecall_btn_padding_type)) ){
+        $livecall_btn_padding_type = "px";
+    }
+
+    $livecall_btn_padding_top = get_option("livecall_btn_padding_top");
+    if( empty(trim($livecall_btn_padding_top)) ){
+        $livecall_btn_padding_top = "0";
+    }
+    $livecall_btn_padding_right = get_option("livecall_btn_padding_right");
+    if( empty(trim($livecall_btn_padding_right)) ){
+        $livecall_btn_padding_right = "0";
+    }
+    $livecall_btn_padding_bottom = get_option("livecall_btn_padding_bottom");
+    if( empty(trim($livecall_btn_padding_bottom)) ){
+        $livecall_btn_padding_bottom = "0";
+    }
+    $livecall_btn_padding_left = get_option("livecall_btn_padding_left");
+    if( empty(trim($livecall_btn_padding_left)) ){
+        $livecall_btn_padding_left = "0";
+    }
+
+    $livecall_btn_textalign = get_option('livecall_btn_textalign');
+    if( empty(trim($livecall_btn_textalign)) ){
+        $livecall_btn_textalign = "center";
+    }
+
+    $livecall_btn_font_size = get_option('livecall_btn_font_size');
+    $livecall_btn_text_color = get_option('livecall_btn_text_color');
+    if( empty(trim($livecall_btn_text_color)) ){
+        $livecall_btn_text_color = "#FFFFFF";
+    }
+    $livecall_btn_border_width = get_option('livecall_btn_border_width');
+    $livecall_btn_border_color = get_option('livecall_btn_border_color');
+    if( empty(trim($livecall_btn_border_color)) ){
+        $livecall_btn_border_color = "#FFFFFF";
+    }
+    $livecall_btn_border_radius = get_option('livecall_btn_border_radius');
+    $livecall_btn_bg_color = get_option('livecall_btn_bg_color');
+    if( empty(trim($livecall_btn_bg_color)) ){
+        $livecall_btn_bg_color = "#27A0B7";
+    }
+
+    //hover state..
+    $livecall_btn_font_size_hover = get_option('livecall_btn_font_size_hover');
+    $livecall_btn_text_color_hover = get_option('livecall_btn_text_color_hover');
+    if( empty(trim($livecall_btn_text_color_hover)) ){
+        $livecall_btn_text_color_hover = "#FFFFFF";
+    }
+    $livecall_btn_border_width_hover = get_option('livecall_btn_border_width_hover');
+    $livecall_btn_border_color_hover = get_option('livecall_btn_border_color_hover');
+    if( empty(trim($livecall_btn_border_color_hover)) ){
+        $livecall_btn_border_color_hover = "#FFFFFF";
+    }
+    $livecall_btn_border_radius_hover = get_option('livecall_btn_border_radius_hover');
+    $livecall_btn_bg_color_hover = get_option('livecall_btn_bg_color_hover');
+    if( empty(trim($livecall_btn_bg_color_hover)) ){
+        $livecall_btn_bg_color_hover = "#000000";
+    }
+
+    $livecall_btn_width = get_option("livecall_btn_width");
+    if( empty(trim($livecall_btn_width)) ){
+        $livecall_btn_width = "auto";
+    }
+    $livecall_btn_height = get_option("livecall_btn_height");
+    if( empty(trim($livecall_btn_height)) ){
+        $livecall_btn_height = "auto";
+    }
+
+    $livecall_btn_fontfamily = get_option('livecall_btn_fontfamily');
+    if( empty(trim($livecall_btn_fontfamily)) ){
+        $livecall_btn_fontfamily = "inherit";
+    }
+
+    $seller_email_subject = get_option('seller_email_subject');
+    if( empty(trim($seller_email_subject)) ){
+        $seller_email_subject = "Sample watching request";
+    }
     ?>
         <div class="wrap">
           
@@ -17,7 +118,7 @@ function wordlive_settings_page(){
             }
 
             if( isset($_GET['success']) && $_GET['success'] == '1' ){
-                echo esc_attr('<div style="color: #3c763d;background-color: #dff0d8;border-color: #d6e9c6;padding: 10px 16px;margin-bottom: 20px;border: 1px solid transparent;border-radius: 4px;display: inline-block;">Changes are saved successfully..</div>');
+                echo wp_kses_post('<div style="color: #3c763d;background-color: #dff0d8;border-color: #d6e9c6;padding: 10px 16px;margin-bottom: 20px;border: 1px solid transparent;border-radius: 4px;display: inline-block;">Changes are saved successfully..</div>');
             }
             
 
