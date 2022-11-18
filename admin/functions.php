@@ -397,10 +397,11 @@ if( get_option('enable_product_details_page_btn') == '1' ){
 
 //sendmail
 function wordlive_sendmail( $to, $subject, $message ) {
-    
-    $headers = "MIME-Version: 1.0" . "\r\n";
-    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= 'From: Demolink <noreply@demolink.co>' . "\r\n";
+    $from = get_bloginfo('admin_email');
+    $headers  = "From: " . strip_tags($from) . "\r\n";
+    $headers .= "Reply-To: " . strip_tags($from) . "\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
     @mail($to, $subject, $message, $headers);
 
@@ -414,7 +415,7 @@ function wordlive_email_template( $content = "" ) {
 
     $mail_footer_text = "&copy; 2022 Copyright, All rights reserved";
 
-    $temp = '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 400px;background: #f5f8fa; min-width: 350px; font-size: 1px; line-height: normal; height:100%; border: none;">
+    $temp = '<html><head></head><body><table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 400px;background: #f5f8fa; min-width: 350px; font-size: 1px; line-height: normal; height:100%; border: none;">
       <tr>
         <td align="center" valign="top">
           <table cellpadding="0" cellspacing="0" border="0" width="750" class="table750"
@@ -438,7 +439,7 @@ function wordlive_email_template( $content = "" ) {
           </table>
         </td>
       </tr>
-    </table>';
+    </table></body></html>';
 
     return wp_kses_post($temp);
 
