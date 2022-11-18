@@ -440,7 +440,7 @@ function wordlive_email_template( $content = "" ) {
       </tr>
     </table>';
 
-    return $temp;
+    return wp_kses_post($temp);
 
 }
 
