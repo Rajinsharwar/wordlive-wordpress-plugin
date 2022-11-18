@@ -33,6 +33,8 @@ $id = '';
 if( isset($_GET['id']) && !empty($_GET['id']) ){
 	$sanitize = [];
 	$sanitize["id"] = wordlive_sanitize($_GET['id']);
+	$sanitize["t"] = wordlive_sanitize($_GET['t']);
+
 	
 	$prodid = $sanitize['id'];
 	$prodname = get_the_title($prodid);

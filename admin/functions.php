@@ -388,7 +388,7 @@ if( get_option('enable_product_details_page_btn') == '1' ){
         
         $selectedpage = get_option('livecall_slug');
         $text = '<div class="meet_link"><a class="meet_link_link" href="'.home_url($selectedpage).'?id='.get_the_ID().'&t='.time().'" target="_blank">'.get_option('livecall_btn_text').'</a></div>';
-        echo esc_attr($text);
+        echo wp_kses_post($text);
 
     }
 
