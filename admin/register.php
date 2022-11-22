@@ -14,8 +14,8 @@ function wordlive_watchlive_func($atts) {
         $product_id = $atts['product_id'];
     }
 
-    $selectedpage = get_option('livecall_slug');
-    $c .= '<div class="meet_link"><a class="meet_link_link" href="'.home_url($selectedpage).'?id='.$product_id.'" target="_blank">'.get_option('livecall_btn_text').'</a></div>';
+    $selectedpage = get_option('wordlive_livecall_slug');
+    $c .= '<div class="meet_link"><a class="meet_link_link" href="'.home_url($selectedpage).'?id='.$product_id.'" target="_blank">'.get_option('wordlive_livecall_btn_text').'</a></div>';
 
     return $c;
 
@@ -55,7 +55,7 @@ function wordlive_videocall_func($atts) {
 
     // echo $role;
 
-    $selectedpagee = get_option('guestlogin_enable');
+    $selectedpagee = get_option('wordlive_guestlogin_enable');
     if( isset($selectedpagee) && $selectedpagee == 'yes' ){ //guest login allowed.. end
 
         $randkey = rand(100000, 10000000);
@@ -195,7 +195,7 @@ function wordlive_videocall_func($atts) {
 
         } else {
 
-            $selectedpagee = get_option('loginpage_slug');
+            $selectedpagee = get_option('wordlive_loginpage_slug');
             if( !empty($selectedpagee) ){
                 $lynk = home_url($selectedpagee);
             } else {
@@ -206,7 +206,7 @@ function wordlive_videocall_func($atts) {
             }
             $prodid = (isset($safeGet) && !empty($safeGet)) ? $safeGet : "";
 
-            $selectedpage = get_option('livecall_slug');
+            $selectedpage = get_option('wordlive_livecall_slug');
             $redirect_link = home_url($selectedpage)."?id=".$prodid;
 
             $c .= 'Please login to call..';

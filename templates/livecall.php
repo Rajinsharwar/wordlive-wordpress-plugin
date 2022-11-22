@@ -56,16 +56,16 @@ if( isset($_GET['id']) && !empty($_GET['id']) ){
 	$role = (is_user_logged_in() && $prod_author == $current_user_id) ? 'moderator' : 'participant';
 	// echo $role; die;
 
-	$selectedpage = get_option('livecall_slug');
+	$selectedpage = get_option('wordlive_livecall_slug');
 
 	$join_call_link = home_url($selectedpage)."?id=".$prodid."&t=".$sanitize['t'];
 
 	//email notification
 	$to = $seller_email;
 	// $subject = "New sample watching request";
-	$subject = get_option('seller_email_subject');
+	$subject = get_option('wordlive_seller_email_subject');
 
-	$replace_shortcode_withlink = str_replace( "{video_link}", "replace", get_option('seller_email_temp') );
+	$replace_shortcode_withlink = str_replace( "{video_link}", "replace", get_option('wordlive_seller_email_temp') );
 
 	if( is_user_logged_in() ){
 		$current_user_information = get_userdata($current_user_id);
@@ -77,7 +77,7 @@ if( isset($_GET['id']) && !empty($_GET['id']) ){
 	// echo $seller_name.', '.$join_call_link.', '.$prodname.', '.$prodid.', '.$prodcategory.', '.$customer_name;
 	// die;
 	
-	$emailtemp = str_replace( array("{seller_name}", "{video_link}", "{product_name}", "{product_id}", "{product_category}", "{customer_name}"), array($seller_name, $join_call_link, $prodname, $prodid, $prodcategory, $customer_name), get_option('seller_email_temp') );
+	$emailtemp = str_replace( array("{seller_name}", "{video_link}", "{product_name}", "{product_id}", "{product_category}", "{customer_name}"), array($seller_name, $join_call_link, $prodname, $prodid, $prodcategory, $customer_name), get_option('wordlive_seller_email_temp') );
 
 	$message = wordlive_email_template($emailtemp);
 	// echo $message; die;

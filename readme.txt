@@ -4,7 +4,7 @@ Tags: WooCommerce, WooCommerce product options, WooCommerce product live-chat, W
 Requires at least: 3.9
 Tested up to: 6.1
 Requires PHP: 5.6
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,8 @@ Yes, you can easily customize the call request email template. After the plugin 
 
 == Changelog ==
 
+= 1.0.7 (2022-11-22) =
+- New: Optimized the plugin for avoiding conflicts with other plugins.
 = 1.0.6 (2022-11-22) =
 - Securing uninstalltion process.
 = 1.0.5 (2022-11-22) =

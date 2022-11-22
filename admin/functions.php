@@ -18,7 +18,7 @@ if( is_plugin_active( "dokan-lite/dokan.php" ) ){
         $urls['how_to_join_call'] = array(
             'title' => __( 'How to join call?', 'dokan'),
             'icon'  => '<i class="fa fa-info-circle"></i>',
-            'url'   => home_url( get_option('howtojoinpage_slug') ), //dokan_get_navigation_url( 'how_to_join_call' )
+            'url'   => home_url( get_option('wordlive_howtojoinpage_slug') ), //dokan_get_navigation_url( 'how_to_join_call' )
             'pos'   => 51
         );
         return $urls;
@@ -108,56 +108,56 @@ function wordlive_addpage_func(){
 
     if( $save_settings != '1' ){
 
-        update_option('enable_shop_page_btn', '1');
-        update_option('button_loc_shop_page', 'woocommerce_loop_add_to_cart_link');
+        update_option('wordlive_enable_shop_page_btn', '1');
+        update_option('wordlive_button_loc_shop_page', 'woocommerce_loop_add_to_cart_link');
 
-        update_option('enable_product_details_page_btn', '1');
-        update_option('button_loc_product_details_page', 'woocommerce_after_add_to_cart_button');
+        update_option('wordlive_enable_product_details_page_btn', '1');
+        update_option('wordlive_button_loc_product_details_page', 'woocommerce_after_add_to_cart_button');
 
-        update_option( 'guestlogin_enable', 'no' );
+        update_option( 'wordlive_guestlogin_enable', 'no' );
 
-        update_option( 'loginpage_slug', 'my-account' );
-        update_option( 'livecall_slug', "live-call" );
-        update_option( 'howtojoinpage_slug', "how-to-join-call" );
+        update_option( 'wordlive_loginpage_slug', 'my-account' );
+        update_option( 'wordlive_livecall_slug', "live-call" );
+        update_option( 'wordlive_howtojoinpage_slug', "how-to-join-call" );
 
-        update_option( 'livecall_btn_text', "Watch live sample" );
+        update_option( 'wordlive_livecall_btn_text', "Watch live sample" );
 
         //Button Style
-        update_option( 'livecall_btn_width', 'auto' );
-        update_option( 'livecall_btn_height', 'auto' );
+        update_option( 'wordlive_livecall_btn_width', 'auto' );
+        update_option( 'wordlive_livecall_btn_height', 'auto' );
 
-        update_option( 'livecall_btn_margin_type', 'px' );
-        update_option( 'livecall_btn_margin_top', '10' );
-        update_option( 'livecall_btn_margin_right', 'auto' );
-        update_option( 'livecall_btn_margin_bottom', 'auto' );
-        update_option( 'livecall_btn_margin_left', 'auto' );
+        update_option( 'wordlive_livecall_btn_margin_type', 'px' );
+        update_option( 'wordlive_livecall_btn_margin_top', '10' );
+        update_option( 'wordlive_livecall_btn_margin_right', 'auto' );
+        update_option( 'wordlive_livecall_btn_margin_bottom', 'auto' );
+        update_option( 'wordlive_livecall_btn_margin_left', 'auto' );
 
-        update_option( 'livecall_btn_padding_type', 'px' );
-        update_option( 'livecall_btn_padding_top', '10' );
-        update_option( 'livecall_btn_padding_right', '20' );
-        update_option( 'livecall_btn_padding_bottom', '10' );
-        update_option( 'livecall_btn_padding_left', '20' );
+        update_option( 'wordlive_livecall_btn_padding_type', 'px' );
+        update_option( 'wordlive_livecall_btn_padding_top', '10' );
+        update_option( 'wordlive_livecall_btn_padding_right', '20' );
+        update_option( 'wordlive_livecall_btn_padding_bottom', '10' );
+        update_option( 'wordlive_livecall_btn_padding_left', '20' );
 
-        update_option( 'livecall_btn_textalign', 'center' );
-        update_option( 'livecall_btn_font_size', '14px' );
-        update_option( 'livecall_btn_fontfamily', 'inherit' );
-        update_option( 'livecall_btn_text_color', '#FFFFFF' );
-        update_option( 'livecall_btn_border_width', '1px' );
-        update_option( 'livecall_btn_border_color', '#FFFFFF' );
-        update_option( 'livecall_btn_border_radius', '5px' );
-        update_option( 'livecall_btn_bg_color', '#27A0B7' );
+        update_option( 'wordlive_livecall_btn_textalign', 'center' );
+        update_option( 'wordlive_livecall_btn_font_size', '14px' );
+        update_option( 'wordlive_livecall_btn_fontfamily', 'inherit' );
+        update_option( 'wordlive_livecall_btn_text_color', '#FFFFFF' );
+        update_option( 'wordlive_livecall_btn_border_width', '1px' );
+        update_option( 'wordlive_livecall_btn_border_color', '#FFFFFF' );
+        update_option( 'wordlive_livecall_btn_border_radius', '5px' );
+        update_option( 'wordlive_livecall_btn_bg_color', '#27A0B7' );
 
         //Button Style (On hover state)
-        update_option( 'livecall_btn_font_size_hover', '14px' );
-        update_option( 'livecall_btn_text_color_hover', '#FFFFFF' );
-        update_option( 'livecall_btn_border_width_hover', '1px' );
-        update_option( 'livecall_btn_border_color_hover', '#FFFFFF' );
-        update_option( 'livecall_btn_border_radius_hover', '5px' );
-        update_option( 'livecall_btn_bg_color_hover', '#000000' );
+        update_option( 'wordlive_livecall_btn_font_size_hover', '14px' );
+        update_option( 'wordlive_livecall_btn_text_color_hover', '#FFFFFF' );
+        update_option( 'wordlive_livecall_btn_border_width_hover', '1px' );
+        update_option( 'wordlive_livecall_btn_border_color_hover', '#FFFFFF' );
+        update_option( 'wordlive_livecall_btn_border_radius_hover', '5px' );
+        update_option( 'wordlive_livecall_btn_bg_color_hover', '#000000' );
 
         //eamil template
-        update_option( 'seller_email_subject', 'Sample watching request' );
-        update_option( 'seller_email_temp', 'Hello {seller_name},<BR><BR>Good News. Somebody wants to view your product on Live. Please click on the below link and attend with the customer.<BR>{video_link}<BR><BR>Regards,<BR>'.WORDLIVE_PLUGINNAME.' Team' );
+        update_option( 'wordlive_seller_email_subject', 'Sample watching request' );
+        update_option( 'wordlive_seller_email_temp', 'Hello {seller_name},<BR><BR>Good News. Somebody wants to view your product on Live. Please click on the below link and attend with the customer.<BR>{video_link}<BR><BR>Regards,<BR>'.WORDLIVE_PLUGINNAME.' Team' );
 
     }
 
@@ -179,7 +179,7 @@ function wordlive_addpage_func(){
             update_post_meta($new_page_id, '_wp_page_template', $new_page_template);
         }
         if( $new_page_id ){
-            update_option( 'livecall_slug', "live-call" );
+            update_option( 'wordlive_livecall_slug', "live-call" );
         }
     }
 
@@ -201,7 +201,7 @@ function wordlive_addpage_func(){
             update_post_meta($new_page_idd, '_wp_page_template', $new_page_templatee);
         }
         if( $new_page_idd ){
-            update_option( 'howtojoinpage_slug', "how-to-join-call" );
+            update_option( 'wordlive_howtojoinpage_slug', "how-to-join-call" );
         }
     }
 
@@ -215,101 +215,101 @@ function wordlive_loading_assets_func(){
     wp_enqueue_style( WORDLIVE_PLUGINNAME.'-css', WORDLIVE_PLUGINLINK . "/assets/css/style.css" );
 
     //normal state..
-    $livecall_btn_margin_type = get_option("livecall_btn_margin_type");
-    if( empty(trim($livecall_btn_margin_type)) ){
-        $livecall_btn_margin_type = "px";
+    $wordlive_livecall_btn_margin_type = get_option("wordlive_livecall_btn_margin_type");
+    if( empty(trim($wordlive_livecall_btn_margin_type)) ){
+        $wordlive_livecall_btn_margin_type = "px";
     }
     
-    $livecall_btn_margin_top = get_option("livecall_btn_margin_top");
-    if( empty(trim($livecall_btn_margin_top)) ){
-        $livecall_btn_margin_top = "auto";
+    $wordlive_livecall_btn_margin_top = get_option("wordlive_livecall_btn_margin_top");
+    if( empty(trim($wordlive_livecall_btn_margin_top)) ){
+        $wordlive_livecall_btn_margin_top = "auto";
     }
-    $livecall_btn_margin_right = get_option("livecall_btn_margin_right");
-    if( empty(trim($livecall_btn_margin_right)) ){
-        $livecall_btn_margin_right = "auto";
+    $wordlive_livecall_btn_margin_right = get_option("wordlive_livecall_btn_margin_right");
+    if( empty(trim($wordlive_livecall_btn_margin_right)) ){
+        $wordlive_livecall_btn_margin_right = "auto";
     }
-    $livecall_btn_margin_bottom = get_option("livecall_btn_margin_bottom");
-    if( empty(trim($livecall_btn_margin_bottom)) ){
-        $livecall_btn_margin_bottom = "auto";
+    $wordlive_livecall_btn_margin_bottom = get_option("wordlive_livecall_btn_margin_bottom");
+    if( empty(trim($wordlive_livecall_btn_margin_bottom)) ){
+        $wordlive_livecall_btn_margin_bottom = "auto";
     }
-    $livecall_btn_margin_left = get_option("livecall_btn_margin_left");
-    if( empty(trim($livecall_btn_margin_left)) ){
-        $livecall_btn_margin_left = "auto";
+    $wordlive_livecall_btn_margin_left = get_option("wordlive_livecall_btn_margin_left");
+    if( empty(trim($wordlive_livecall_btn_margin_left)) ){
+        $wordlive_livecall_btn_margin_left = "auto";
     }
 
     
-    $livecall_btn_padding_type = get_option("livecall_btn_padding_type");
-    if( empty(trim($livecall_btn_padding_type)) ){
-        $livecall_btn_padding_type = "px";
+    $wordlive_livecall_btn_padding_type = get_option("wordlive_livecall_btn_padding_type");
+    if( empty(trim($wordlive_livecall_btn_padding_type)) ){
+        $wordlive_livecall_btn_padding_type = "px";
     }
 
-    $livecall_btn_padding_top = get_option("livecall_btn_padding_top");
-    if( empty(trim($livecall_btn_padding_top)) ){
-        $livecall_btn_padding_top = "0";
+    $wordlive_livecall_btn_padding_top = get_option("wordlive_livecall_btn_padding_top");
+    if( empty(trim($wordlive_livecall_btn_padding_top)) ){
+        $wordlive_livecall_btn_padding_top = "0";
     }
-    $livecall_btn_padding_right = get_option("livecall_btn_padding_right");
-    if( empty(trim($livecall_btn_padding_right)) ){
-        $livecall_btn_padding_right = "0";
+    $wordlive_livecall_btn_padding_right = get_option("wordlive_livecall_btn_padding_right");
+    if( empty(trim($wordlive_livecall_btn_padding_right)) ){
+        $wordlive_livecall_btn_padding_right = "0";
     }
-    $livecall_btn_padding_bottom = get_option("livecall_btn_padding_bottom");
-    if( empty(trim($livecall_btn_padding_bottom)) ){
-        $livecall_btn_padding_bottom = "0";
+    $wordlive_livecall_btn_padding_bottom = get_option("wordlive_livecall_btn_padding_bottom");
+    if( empty(trim($wordlive_livecall_btn_padding_bottom)) ){
+        $wordlive_livecall_btn_padding_bottom = "0";
     }
-    $livecall_btn_padding_left = get_option("livecall_btn_padding_left");
-    if( empty(trim($livecall_btn_padding_left)) ){
-        $livecall_btn_padding_left = "0";
-    }
-
-    $livecall_btn_textalign = get_option('livecall_btn_textalign');
-    if( empty(trim($livecall_btn_textalign)) ){
-        $livecall_btn_textalign = "center";
+    $wordlive_livecall_btn_padding_left = get_option("wordlive_livecall_btn_padding_left");
+    if( empty(trim($wordlive_livecall_btn_padding_left)) ){
+        $wordlive_livecall_btn_padding_left = "0";
     }
 
-    $livecall_btn_font_size = get_option('livecall_btn_font_size');
-    $livecall_btn_text_color = get_option('livecall_btn_text_color');
-    if( empty(trim($livecall_btn_text_color)) ){
-        $livecall_btn_text_color = "#FFFFFF";
+    $wordlive_livecall_btn_textalign = get_option('wordlive_livecall_btn_textalign');
+    if( empty(trim($wordlive_livecall_btn_textalign)) ){
+        $wordlive_livecall_btn_textalign = "center";
     }
-    $livecall_btn_border_width = get_option('livecall_btn_border_width');
-    $livecall_btn_border_color = get_option('livecall_btn_border_color');
-    if( empty(trim($livecall_btn_border_color)) ){
-        $livecall_btn_border_color = "#FFFFFF";
+
+    $wordlive_livecall_btn_font_size = get_option('wordlive_livecall_btn_font_size');
+    $wordlive_livecall_btn_text_color = get_option('wordlive_livecall_btn_text_color');
+    if( empty(trim($wordlive_livecall_btn_text_color)) ){
+        $wordlive_livecall_btn_text_color = "#FFFFFF";
     }
-    $livecall_btn_border_radius = get_option('livecall_btn_border_radius');
-    $livecall_btn_bg_color = get_option('livecall_btn_bg_color');
-    if( empty(trim($livecall_btn_bg_color)) ){
-        $livecall_btn_bg_color = "#27A0B7";
+    $wordlive_livecall_btn_border_width = get_option('wordlive_livecall_btn_border_width');
+    $wordlive_livecall_btn_border_color = get_option('wordlive_livecall_btn_border_color');
+    if( empty(trim($wordlive_livecall_btn_border_color)) ){
+        $wordlive_livecall_btn_border_color = "#FFFFFF";
+    }
+    $wordlive_livecall_btn_border_radius = get_option('wordlive_livecall_btn_border_radius');
+    $wordlive_livecall_btn_bg_color = get_option('wordlive_livecall_btn_bg_color');
+    if( empty(trim($wordlive_livecall_btn_bg_color)) ){
+        $wordlive_livecall_btn_bg_color = "#27A0B7";
     }
 
     //hover state..
-    $livecall_btn_font_size_hover = get_option('livecall_btn_font_size_hover');
-    $livecall_btn_text_color_hover = get_option('livecall_btn_text_color_hover');
-    if( empty(trim($livecall_btn_text_color_hover)) ){
-        $livecall_btn_text_color_hover = "#FFFFFF";
+    $wordlive_livecall_btn_font_size_hover = get_option('wordlive_livecall_btn_font_size_hover');
+    $wordlive_livecall_btn_text_color_hover = get_option('wordlive_livecall_btn_text_color_hover');
+    if( empty(trim($wordlive_livecall_btn_text_color_hover)) ){
+        $wordlive_livecall_btn_text_color_hover = "#FFFFFF";
     }
-    $livecall_btn_border_width_hover = get_option('livecall_btn_border_width_hover');
-    $livecall_btn_border_color_hover = get_option('livecall_btn_border_color_hover');
-    if( empty(trim($livecall_btn_border_color_hover)) ){
-        $livecall_btn_border_color_hover = "#FFFFFF";
+    $wordlive_livecall_btn_border_width_hover = get_option('wordlive_livecall_btn_border_width_hover');
+    $wordlive_livecall_btn_border_color_hover = get_option('wordlive_livecall_btn_border_color_hover');
+    if( empty(trim($wordlive_livecall_btn_border_color_hover)) ){
+        $wordlive_livecall_btn_border_color_hover = "#FFFFFF";
     }
-    $livecall_btn_border_radius_hover = get_option('livecall_btn_border_radius_hover');
-    $livecall_btn_bg_color_hover = get_option('livecall_btn_bg_color_hover');
-    if( empty(trim($livecall_btn_bg_color_hover)) ){
-        $livecall_btn_bg_color_hover = "#000000";
-    }
-
-    $livecall_btn_width = get_option("livecall_btn_width");
-    if( empty(trim($livecall_btn_width)) ){
-        $livecall_btn_width = "auto";
-    }
-    $livecall_btn_height = get_option("livecall_btn_height");
-    if( empty(trim($livecall_btn_height)) ){
-        $livecall_btn_height = "auto";
+    $wordlive_livecall_btn_border_radius_hover = get_option('wordlive_livecall_btn_border_radius_hover');
+    $wordlive_livecall_btn_bg_color_hover = get_option('wordlive_livecall_btn_bg_color_hover');
+    if( empty(trim($wordlive_livecall_btn_bg_color_hover)) ){
+        $wordlive_livecall_btn_bg_color_hover = "#000000";
     }
 
-    $livecall_btn_fontfamily = get_option('livecall_btn_fontfamily');
-    if( empty(trim($livecall_btn_fontfamily)) ){
-        $livecall_btn_fontfamily = "inherit";
+    $wordlive_livecall_btn_width = get_option("wordlive_livecall_btn_width");
+    if( empty(trim($wordlive_livecall_btn_width)) ){
+        $wordlive_livecall_btn_width = "auto";
+    }
+    $wordlive_livecall_btn_height = get_option("wordlive_livecall_btn_height");
+    if( empty(trim($wordlive_livecall_btn_height)) ){
+        $wordlive_livecall_btn_height = "auto";
+    }
+
+    $wordlive_livecall_btn_fontfamily = get_option('wordlive_livecall_btn_fontfamily');
+    if( empty(trim($wordlive_livecall_btn_fontfamily)) ){
+        $wordlive_livecall_btn_fontfamily = "inherit";
     }
 
     ?>
@@ -317,29 +317,29 @@ function wordlive_loading_assets_func(){
     $empty= "";
     $style=  "
     a.meet_link_link {
-        font-family:".$livecall_btn_fontfamily.";
-        width:".$livecall_btn_width;";
-        height:".$livecall_btn_height.";
+        font-family:".$wordlive_livecall_btn_fontfamily.";
+        width:".$wordlive_livecall_btn_width;";
+        height:".$wordlive_livecall_btn_height.";
 
         /* top | right | bottom | left */
-        margin:".$livecall_btn_margin_top.(($livecall_btn_margin_top>0)?$livecall_btn_margin_type:$empty).$livecall_btn_margin_right.(($livecall_btn_margin_right>0)?$livecall_btn_margin_type:$empty).$livecall_btn_margin_bottom.(($livecall_btn_margin_bottom>0)?$livecall_btn_margin_type:$empty).$livecall_btn_margin_left.(($livecall_btn_margin_left>0)?$livecall_btn_margin_type:$empty)."; !important;
+        margin:".$wordlive_livecall_btn_margin_top.(($wordlive_livecall_btn_margin_top>0)?$wordlive_livecall_btn_margin_type:$empty).$wordlive_livecall_btn_margin_right.(($wordlive_livecall_btn_margin_right>0)?$wordlive_livecall_btn_margin_type:$empty).$wordlive_livecall_btn_margin_bottom.(($wordlive_livecall_btn_margin_bottom>0)?$wordlive_livecall_btn_margin_type:$empty).$wordlive_livecall_btn_margin_left.(($wordlive_livecall_btn_margin_left>0)?$wordlive_livecall_btn_margin_type:$empty)."; !important;
 
         /* top | right | bottom | left */
-        padding: ".$livecall_btn_padding_top.(($livecall_btn_padding_top>0)?$livecall_btn_padding_type:$empty).$livecall_btn_padding_right.(($livecall_btn_padding_right>0)?$livecall_btn_padding_type:$empty).$livecall_btn_padding_bottom.(($livecall_btn_padding_bottom>0)?$livecall_btn_padding_type:$empty).$livecall_btn_padding_left.(($livecall_btn_padding_left>0)?$livecall_btn_padding_type:$empty)."; !important;
+        padding: ".$wordlive_livecall_btn_padding_top.(($wordlive_livecall_btn_padding_top>0)?$wordlive_livecall_btn_padding_type:$empty).$wordlive_livecall_btn_padding_right.(($wordlive_livecall_btn_padding_right>0)?$wordlive_livecall_btn_padding_type:$empty).$wordlive_livecall_btn_padding_bottom.(($wordlive_livecall_btn_padding_bottom>0)?$wordlive_livecall_btn_padding_type:$empty).$wordlive_livecall_btn_padding_left.(($wordlive_livecall_btn_padding_left>0)?$wordlive_livecall_btn_padding_type:$empty)."; !important;
 
-        color: ". $livecall_btn_text_color." !important;
-        background-color:".$livecall_btn_bg_color."!important;
-        border: ".$livecall_btn_border_width."solid".$livecall_btn_border_color."!important;
-        border-radius:".$livecall_btn_border_radius."!important;
-        font-size: ".$livecall_btn_font_size."!important;
-        text-align:".$livecall_btn_textalign.";
+        color: ". $wordlive_livecall_btn_text_color." !important;
+        background-color:".$wordlive_livecall_btn_bg_color."!important;
+        border: ".$wordlive_livecall_btn_border_width."solid".$wordlive_livecall_btn_border_color."!important;
+        border-radius:".$wordlive_livecall_btn_border_radius."!important;
+        font-size: ".$wordlive_livecall_btn_font_size."!important;
+        text-align:".$wordlive_livecall_btn_textalign.";
     }
     a.meet_link_link:hover {
-        color: ".$livecall_btn_text_color_hover."!important;
-        background-color:".$livecall_btn_bg_color_hover." !important;
-        border: ". $livecall_btn_border_width_hover." solid". $livecall_btn_border_color_hover." !important;
-        border-radius: ".$livecall_btn_border_radius_hover."!important;
-        font-size: ".$livecall_btn_font_size_hover." !important;
+        color: ".$wordlive_livecall_btn_text_color_hover."!important;
+        background-color:".$wordlive_livecall_btn_bg_color_hover." !important;
+        border: ". $wordlive_livecall_btn_border_width_hover." solid". $wordlive_livecall_btn_border_color_hover." !important;
+        border-radius: ".$wordlive_livecall_btn_border_radius_hover."!important;
+        font-size: ".$wordlive_livecall_btn_font_size_hover." !important;
     }";
     wp_add_inline_style(WORDLIVE_PLUGINNAME.'-css', $style );
     ?>
@@ -352,7 +352,7 @@ function wordlive_loading_assets_func(){
 add_filter( 'page_template', 'wordlive_page_template_func' );
 function wordlive_page_template_func( $page_template ) {
 
-    $selectedpage = get_option('livecall_slug');
+    $selectedpage = get_option('wordlive_livecall_slug');
     if ( is_page( $selectedpage ) ) {
         $page_template = WORDLIVE_PLUGINPATH . '/templates/livecall.php';
     }
@@ -362,15 +362,15 @@ function wordlive_page_template_func( $page_template ) {
 
 
 //auto add button below product add to cart button on shop page
-if( get_option('enable_shop_page_btn') == '1' ){
+if( get_option('wordlive_enable_shop_page_btn') == '1' ){
 
-    $button_loc_shop_page = get_option('button_loc_shop_page');
+    $wordlive_button_loc_shop_page = get_option('wordlive_button_loc_shop_page');
     
-    add_filter( $button_loc_shop_page, 'after_btn_func', 10, 3 );
+    add_filter( $wordlive_button_loc_shop_page, 'after_btn_func', 10, 3 );
     function after_btn_func( $add_to_cart_html, $product, $args ){
         
-        $selectedpage = get_option('livecall_slug');
-        $text = '<div class="meet_link"><a class="meet_link_link" href="'.home_url($selectedpage).'?id='.get_the_ID().'&t='.time().'" target="_blank">'.get_option('livecall_btn_text').'</a></div>';
+        $selectedpage = get_option('wordlive_livecall_slug');
+        $text = '<div class="meet_link"><a class="meet_link_link" href="'.home_url($selectedpage).'?id='.get_the_ID().'&t='.time().'" target="_blank">'.get_option('wordlive_livecall_btn_text').'</a></div>';
         return $add_to_cart_html . $text;
 
     }
@@ -379,15 +379,15 @@ if( get_option('enable_shop_page_btn') == '1' ){
 
 
 //auto add button below product add to cart button on product details page
-if( get_option('enable_product_details_page_btn') == '1' ){
+if( get_option('wordlive_enable_product_details_page_btn') == '1' ){
 
-    $button_loc_product_details_page = get_option('button_loc_product_details_page');
+    $wordlive_button_loc_product_details_page = get_option('wordlive_button_loc_product_details_page');
     
-    add_action( $button_loc_product_details_page, 'wordlive_addbutton_func' );
+    add_action( $wordlive_button_loc_product_details_page, 'wordlive_addbutton_func' );
     function wordlive_addbutton_func() {
         
-        $selectedpage = get_option('livecall_slug');
-        $text = '<div class="meet_link"><a class="meet_link_link" href="'.home_url($selectedpage).'?id='.get_the_ID().'&t='.time().'" target="_blank">'.get_option('livecall_btn_text').'</a></div>';
+        $selectedpage = get_option('wordlive_livecall_slug');
+        $text = '<div class="meet_link"><a class="meet_link_link" href="'.home_url($selectedpage).'?id='.get_the_ID().'&t='.time().'" target="_blank">'.get_option('wordlive_livecall_btn_text').'</a></div>';
         echo wp_kses_post($text);
 
     }
