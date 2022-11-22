@@ -80,6 +80,13 @@ Yes, you can easily customize the call request email template. After the plugin 
 
 == Changelog ==
 
+
+= 1.0.4 (2022-11-19) =
+- Fixed bug of emails sent in plain format instead of HTML.
+= 1.0.3 (2022-11-19) =
+- Fixed bug of video calls.
+= 1.0.2 (2022-11-19) =
+- Fixed issues with frontend view.
 = 1.0.1 (2022-11-17) =
 - Fixed several bugs relating to non-saving of settings, wrong preview and many more.
 = 1.0.0 (2022-11-15) =
