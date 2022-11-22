@@ -80,7 +80,8 @@ Yes, you can easily customize the call request email template. After the plugin 
 
 == Changelog ==
 
-
+= 1.0.5 (2022-11-22) =
+- Added proper uninstalltion process in the plugin.
 = 1.0.4 (2022-11-19) =
 - Fixed bug of emails sent in plain format instead of HTML.
 = 1.0.3 (2022-11-19) =
