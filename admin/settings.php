@@ -591,8 +591,8 @@ function wordlive_enqueue_admin_js(){
         border-radius:".esc_html($wordlive_livecall_btn_border_radius).";
         font-size:".esc_html($wordlive_livecall_btn_font_size).";
         text-align:".esc_html($wordlive_livecall_btn_textalign).";
-    }";
-    wp_add_inline_style(WORDLIVE_PLUGIN_PREFIX.'generated', $custom_css );
+        }";
+        wp_add_inline_style(WORDLIVE_PLUGIN_PREFIX.'generated', $custom_css );
 
 }
 add_action( 'wp_enqueue_scripts', 'wordlive_frontend_enqueue_admin_js' );

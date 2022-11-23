@@ -318,7 +318,7 @@ function wordlive_loading_assets_func(){
     $style=  "
     a.meet_link_link {
         font-family:".$wordlive_livecall_btn_fontfamily.";
-        width:".$wordlive_livecall_btn_width;";
+        width:".$wordlive_livecall_btn_width.";
         height:".$wordlive_livecall_btn_height.";
 
         /* top | right | bottom | left */
