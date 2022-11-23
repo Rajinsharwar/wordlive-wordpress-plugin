@@ -170,7 +170,7 @@ function wordlive_settings_page(){
 
                         <BR>
                         
-                        <p><label style="display: block; margin-bottom: 5px;">Guest login enabled?</label>
+                        <p><label style="display: block; margin-bottom: 5px;">Guest calling enabled?</label>
                             <select name="wordlive_guestlogin_enable" style="border-radius: 5px; min-width: 300px; padding:6px 12px;" required>
                                 <option value="no" <?php if(get_option('wordlive_guestlogin_enable')=='no'){ echo esc_attr('selected'); } ?> >No</option>
                                 <option value="yes" <?php if(get_option('wordlive_guestlogin_enable')=='yes'){ echo esc_attr('selected'); } ?> >Yes</option>
