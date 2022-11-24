@@ -417,7 +417,7 @@ function wordlive_settings_page(){
                             Customer's name: <strong>{customer_name}</strong><BR>
                             </label>
                             <?php $wordlive_seller_email_temp = get_option('wordlive_seller_email_temp');
-                            $settings = array( 'media_buttons' => false, 'textarea_name' => 'wordlive_seller_email_temp', 'textarea_rows' => 8, 'teeny' => true, 'quicktags' => false );
+                            $settings = array( 'media_buttons' => true, 'textarea_name' => 'wordlive_seller_email_temp', 'textarea_rows' => 8, 'teeny' => true, 'quicktags' => true );
                             wp_editor( $wordlive_seller_email_temp, "wordlive_seller_email_temp", $settings );
                             ?></p>
 
