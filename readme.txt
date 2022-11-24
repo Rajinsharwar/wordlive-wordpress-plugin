@@ -83,6 +83,8 @@ Yes, you can easily customize the call request email template. After the plugin 
 
 == Changelog ==
 
+= 1.1.3 (2022-11-24) =
+- Adding new feature for reducing bloat of DB when the plugin isn't functional.
 = 1.1.2 (2022-11-24) =
 - Adding feature to add media and HTML in the email field.
 = 1.1.1 (2022-11-23) =
