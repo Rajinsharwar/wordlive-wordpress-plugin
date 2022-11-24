@@ -73,9 +73,12 @@ Yes, you can easily customize the call request email template. After the plugin 
 
 
 == Screenshots ==
-1. Frontend View
-2. Backend View
+1. Shop Page
+2. Single product Page
 3. Settings View
+4. Settings View
+5. Settings View
+6. Settings View
 
 
 == Changelog ==
