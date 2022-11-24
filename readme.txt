@@ -9,7 +9,10 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-WordLive plugin enables a customizable button on both Shop Page and Product page for a Live Video call between the buyer and seller.
+
+= WordLive plugin enables a customizable button on both Shop Page and Product page for a Live Video call between the buyer and seller. =
+
+https://www.youtube.com/watch?v=-p5CajxqNAo
 
 <strong> Features: </strong>
 * Compatible with the most popular E-commerce plugin; Woocommerce
