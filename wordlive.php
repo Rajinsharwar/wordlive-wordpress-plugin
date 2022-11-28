@@ -4,7 +4,7 @@
  * Description: Add Livecall option in your Woocommerce store between Buyer and Seller. 
  * Author: Rajin Sharwar
  * Author URI: https://linkedin.com/in/rajinsharwar
- * Version: 1.2.0
+ * Version: 1.2.1
  * Text Domain: wordlive
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,7 +18,7 @@ if ( ! function_exists( 'wordlive_track' ) ) {
 
         if ( ! isset( $wordlive_track ) ) {
             // Include Freemius SDK.
-            require_once dirname(__FILE__) . '/freemius/start.php';
+            require_once dirname(__FILE__) . '/includes/start.php';
 
             $wordlive_track = fs_dynamic_init( array(
                 'id'                  => '11520',
