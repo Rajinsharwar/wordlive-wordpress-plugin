@@ -4,7 +4,7 @@
  * Description: Add Livecall option in your Woocommerce store between Buyer and Seller. 
  * Author: Rajin Sharwar
  * Author URI: https://linkedin.com/in/rajinsharwar
- * Version: 1.1.9
+ * Version: 1.2.0
  * Text Domain: wordlive
  */
 if ( ! defined( 'ABSPATH' ) ) {
